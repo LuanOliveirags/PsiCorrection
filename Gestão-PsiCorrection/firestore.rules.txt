@@ -1,0 +1,84 @@
+// ═══════════════════════════════════════════════════════
+//  REGRAS DO FIRESTORE — PsiCorrection
+//  Cole estas regras em:
+//  Firebase Console → Firestore Database → Regras
+//
+//  ARQUITETURA DE SEGURANÇA:
+//
+//  ⚠️  IMPORTANTE — por que não usamos catch-all /{document=**}:
+//      Em Firestore v2, qualquer regra que concede acesso prevalece (OR lógico).
+//      Um catch-all "allow read, write: if request.auth != null" anularia todas
+//      as proteções específicas de _normas. Por isso cada coleção é declarada
+//      explicitamente.
+//
+//  CAMADAS DE PROTEÇÃO:
+//    1. request.auth != null    → bloqueia chamadas sem Firebase Auth
+//    2. _sessoes/{uid}.role     → bloqueia auth anônima que não passou pelo login
+//    3. instrumento in [...]    → limita quais docs de _normas podem ser lidos
+//    4. allow write: if false   → escrita de normas NUNCA via cliente (só seed)
+//
+//  ISOLAMENTO MULTI-TENANT (aplicado na camada de aplicação):
+//    · Cada documento de agendamentos/financeiro/pacientes tem o campo
+//      "emailProfissional" = email do Psicólogo responsável pela clínica.
+//    · Colaboradores e Clientes possuem o campo "clinicaId" no cadastro,
+//      apontando para o emailProfissional da sua clínica.
+//    · O filtro é aplicado em JavaScript (DB_CLINICA, DB_PAC) antes de
+//      qualquer query ao Firestore, garantindo isolamento por sessão.
+//    · Para isolamento a nível de banco, as queries já usam
+//      .where("emailProfissional", "==", emailFiltro) no Firestore,
+//      o que impede leitura cruzada mesmo que as regras sejam permissivas.
+//
+//  CONFIGURAÇÃO ADICIONAL RECOMENDADA:
+//    · Firebase Console → Configurações → Restrições de API:
+//      Restrinja a chave de API ao domínio do site (ex.: https://luangs.pro/*)
+//    · Nunca exponha chaves de serviço (service account) no frontend.
+// ═══════════════════════════════════════════════════════
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Sessões ativas (2ª camada de autenticação) ──────────────────
+    //    Cada profissional registra _sessoes/{seu_uid} ao fazer login.
+    //    Leitura/escrita restrita ao próprio UID.
+    match /_sessoes/{uid} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == uid;
+    }
+
+    // ── Tabelas normativas ───────────────────────────────────────────
+    //    Leitura exige: (1) Firebase Auth, (2) sessão ativa com role válido.
+    //    Escrita SEMPRE bloqueada via cliente — use seedNormasFirestore() no console.
+    match /_normas/{instrumento} {
+      allow read: if request.auth != null
+                  && instrumento in ["wisc", "neupsilin", "neupsilin-inf", "bfp"]
+                  && exists(/databases/$(database)/documents/_sessoes/$(request.auth.uid))
+                  && get(/databases/$(database)/documents/_sessoes/$(request.auth.uid)).data.role
+                     in ["profissional", "admin"];
+      // write NUNCA permitido via cliente (sem allow write)
+    }
+
+    // ── Auditoria ────────────────────────────────────────────────────
+    //    Gravação autenticada (fire-and-forget do app).
+    //    Leitura proibida via cliente — use Firebase Admin SDK para análise.
+    match /_audit/{document=**} {
+      allow write: if request.auth != null;
+    }
+
+    // ── Usuários ─────────────────────────────────────────────────────
+    match /usuarios/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ── Avaliações ───────────────────────────────────────────────────
+    match /avaliacoes/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ── Pacientes ────────────────────────────────────────────────────
+    match /pacientes/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+  }
+}

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PsiCorrection — Gestão clínica + correção psicológica automatizada</title>
+  <meta name="description" content="PsiCorrection 2026: Avaliações NEUPSILIN, WISC-IV, BFP, gestão de pacientes e teleconsulta via Google Meet em um único fluxo.">
+  <link rel="icon" href="../Psicologia/img/Psi.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ═══════════════ HEADER / NAV ═══════════════ -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#hero" class="nav__logo">
+        <img src="../Psicologia/img/Psi.png" alt="PsiCorrection" class="nav__logo-img">
+        <span>PsiCorrection</span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#testes">Testes</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#economia">Economia</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__actions" id="navActions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="../Psicologia/index.html" class="btn btn--ghost">Entrar</a>
+      </div>
+      <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Nav progress bar -->
+    <div class="nav__progress"><div class="nav__progress-bar" id="navProgress"></div></div>
+    <!-- Mobile drawer -->
+    <div class="nav__drawer" id="navDrawer">
+      <nav class="nav__drawer-links">
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#testes">Testes</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#economia">Economia</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__drawer-actions">
+        <a href="../Psicologia/index.html" class="btn btn--outline btn--block">Entrar</a>
+      </div>
+    </div>
+  </header>
+  <div class="nav__overlay" id="navOverlay"></div>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero" id="hero">
+    <!-- Animated particles canvas -->
+    <canvas class="hero__particles" id="heroParticles"></canvas>
+    <!-- Floating orbs -->
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="hero__orb hero__orb--3"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge" data-aos>
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">Versão 2026 · Teleconsulta + Gestão de pacientes</span>
+        </div>
+        <h1 class="hero__title" data-aos>
+          Deixe <span class="gradient-text">a rotina do dia a dia</span> com a plataforma e ganhe tempo clínico
+        </h1>
+        <p class="hero__subtitle" data-aos>
+          PsiCorrection 2026 automatiza NEUPSILIN, WISC-IV, BFP, laudos e agenda de pacientes.
+          Agora com teleconsulta Google Meet integrada e painel de desempenho de clínica.
+        </p>
+        <!-- Typing effect -->
+        <div class="hero__typing" data-aos>
+          <span class="hero__typing-label">Aberto agora:</span>
+          <span class="hero__typing-text" id="typingText"></span>
+          <span class="hero__typing-cursor">|</span>
+        </div>
+        <div class="hero__cta" data-aos>
+          <a href="#como-funciona" class="btn btn--primary btn--lg btn--glow btn--magnetic" data-magnetic>
+            <span>Ver como funciona</span>
+          </a>
+          <a href="../Psicologia/index.html" class="btn btn--white btn--lg btn--glow">Acesse a sua conta gratuita</a>
+        </div>
+        <div class="hero__trust" data-aos>
+          <div class="hero__trust-avatars">
+            <span class="avatar-circle" style="background:#2563eb;">N</span>
+            <span class="avatar-circle" style="background:#7c3aed;">W</span>
+            <span class="avatar-circle" style="background:#0284c7;">B</span>
+            <span class="avatar-circle avatar-circle--count">+</span>
+          </div>
+          <p>Sem cartão · Sem instalação · <strong>Pronto em minutos</strong></p>
+        </div>
+      </div>
+      <div class="hero__visual" data-aos>
+        <div class="hero__mockup">
+          <!-- Floating notification -->
+          <div class="hero__notification" id="heroNotif">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>WISC-IV corrigido em <strong>3 min</strong></span>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
+              <span class="mockup-title">PsiCorrection — Avaliação</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-stat">
+                <span class="mockup-label">Teste</span>
+                <span class="mockup-value">WISC-IV</span>
+              </div>
+              <div class="mockup-stat">
+                <span class="mockup-label">QI Total</span>
+                <span class="mockup-value accent" id="mockupQI">—</span>
+              </div>
+              <div class="mockup-stat">
+                <span class="mockup-label">Classificação</span>
+                <span class="mockup-value success" id="mockupClass">—</span>
+              </div>
+              <div class="mockup-bar-group">
+                <div class="mockup-bar-item">
+                  <span>ICV</span>
+                  <div class="mockup-bar"><div class="mockup-bar-fill" data-width="78"></div></div>
+                </div>
+                <div class="mockup-bar-item">
+                  <span>IOP</span>
+                  <div class="mockup-bar"><div class="mockup-bar-fill" data-width="85"></div></div>
+                </div>
+                <div class="mockup-bar-item">
+                  <span>IMO</span>
+                  <div class="mockup-bar"><div class="mockup-bar-fill" data-width="65"></div></div>
+                </div>
+                <div class="mockup-bar-item">
+                  <span>IVP</span>
+                  <div class="mockup-bar"><div class="mockup-bar-fill" data-width="72"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Second floating card -->
+          <div class="hero__mini-card">
+            <div class="mini-card__icon">🧠</div>
+            <div>
+              <strong>NEUPSILIN</strong>
+              <span>32 subtestes avaliados</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__wave">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 60L48 52C96 44 192 28 288 24C384 20 480 28 576 40C672 52 768 68 864 72C960 76 1056 68 1152 56C1248 44 1344 28 1392 20L1440 12V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0V60Z" fill="var(--bg)"/>
+      </svg>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="hero__scroll-hint">
+      <div class="hero__scroll-mouse">
+        <div class="hero__scroll-wheel"></div>
+      </div>
+      <span>Role para explorar</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════ MARQUEE / SOCIAL PROOF STRIP ═══════════════ -->
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__content">
+        <span class="marquee__item">NEUPSILIN Adulto</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">NEUPSILIN Infantil</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">WISC-IV</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">BFP</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Laudo Automático</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Conforme CFP</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Gestão de Pacientes</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Correção em Minutos</span>
+        <span class="marquee__sep">✦</span>
+        <!-- Duplicado para loop contínuo -->
+        <span class="marquee__item">NEUPSILIN Adulto</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">NEUPSILIN Infantil</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">WISC-IV</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">BFP</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Laudo Automático</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Conforme CFP</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Gestão de Pacientes</span>
+        <span class="marquee__sep">✦</span>
+        <span class="marquee__item">Correção em Minutos</span>
+        <span class="marquee__sep">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ COMO FUNCIONA ═══════════════ -->
+  <section class="how-it-works" id="como-funciona">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Da aplicação ao resultado</span>
+        <h2 class="section-title">Sem tabelas. Sem planilha. Sem conferir.</h2>
+        <p class="section-subtitle">Você coleta os dados. A plataforma faz o resto.</p>
+      </div>
+      <!-- Timeline connector -->
+      <div class="steps-timeline">
+        <div class="steps-timeline__line"></div>
+        <div class="steps">
+          <div class="step" data-aos>
+            <div class="step__number">1</div>
+            <div class="step__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+            </div>
+            <h3>Aplique como sempre</h3>
+            <p>Nada muda na sua aplicação. Continue seguindo o manual do instrumento com o seu paciente.</p>
+          </div>
+          <div class="step" data-aos>
+            <div class="step__number">2</div>
+            <div class="step__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3>Informe as respostas</h3>
+            <p>Insira os dados coletados nos campos da plataforma. Não há tabela para consultar nem fórmula para aplicar.</p>
+          </div>
+          <div class="step" data-aos>
+            <div class="step__number">3</div>
+            <div class="step__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3>Tudo calculado na hora</h3>
+            <p>Pontuação bruta, ponderada, percentil e classificação gerados juntos. Em segundos.</p>
+          </div>
+          <div class="step" data-aos>
+            <div class="step__number">4</div>
+            <div class="step__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h3>Você interpreta</h3>
+            <p>O juízo clínico continua sendo seu. A plataforma entrega os números; você decide o que eles significam.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparativo -->
+      <div class="comparison">
+        <div class="comparison__card comparison__card--manual" data-tilt>
+          <div class="comparison__icon">📝</div>
+          <h4>Do jeito manual</h4>
+          <span class="comparison__time">1–4 horas</span>
+          <p>Tabelas, calculadora, recontagem</p>
+        </div>
+        <div class="comparison__vs">
+          <span>VS</span>
+        </div>
+        <div class="comparison__card comparison__card--auto" data-tilt>
+          <div class="comparison__icon">⚡</div>
+          <h4>Com PsiCorrection</h4>
+          <span class="comparison__time">5–10 min</span>
+          <p>Abre, insere, obtém</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TESTES DISPONÍVEIS ═══════════════ -->
+  <section class="tests" id="testes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Na plataforma hoje</span>
+        <h2 class="section-title">4 instrumentos. Normas originais.</h2>
+        <p class="section-subtitle">Sem adaptações, sem atalhos. Cada correção vale o que uma manual valeria.</p>
+      </div>
+      <!-- Filter tabs -->
+      <div class="tests__filters">
+        <button class="tests__filter active" data-filter="all">Todos</button>
+        <button class="tests__filter" data-filter="rastreio">Rastreio</button>
+        <button class="tests__filter" data-filter="inteligencia">Inteligência</button>
+        <button class="tests__filter" data-filter="personalidade">Personalidade</button>
+      </div>
+      <div class="tests__grid">
+        <div class="test-card" data-category="rastreio" data-aos>
+          <div class="test-card__glow"></div>
+          <span class="test-card__category test-card__category--rastreio">Rastreio</span>
+          <h3 class="test-card__name">NEUPSILIN Adulto</h3>
+          <p class="test-card__desc">Instrumento de Avaliação Neuropsicológica Breve. Avaliação de orientação, atenção, percepção, memória, linguagem e funções executivas.</p>
+          <div class="test-card__footer">
+            <span class="test-card__badge">Disponível</span>
+            <span class="test-card__subtests">32 subtestes · Adultos</span>
+          </div>
+        </div>
+        <div class="test-card" data-category="rastreio" data-aos>
+          <div class="test-card__glow"></div>
+          <span class="test-card__category test-card__category--rastreio">Rastreio</span>
+          <h3 class="test-card__name">NEUPSILIN Infantil</h3>
+          <p class="test-card__desc">Versão infantil do instrumento de avaliação neuropsicológica breve com normas específicas para crianças.</p>
+          <div class="test-card__footer">
+            <span class="test-card__badge">Disponível</span>
+            <span class="test-card__subtests">Normas infantis · 6–12 anos</span>
+          </div>
+        </div>
+        <div class="test-card" data-category="inteligencia" data-aos>
+          <div class="test-card__glow"></div>
+          <span class="test-card__category test-card__category--inteligencia">Inteligência</span>
+          <h3 class="test-card__name">WISC-IV</h3>
+          <p class="test-card__desc">Escala Wechsler de Inteligência para Crianças. Correção completa com QI Total, índices fatoriais e laudo automático.</p>
+          <div class="test-card__footer">
+            <span class="test-card__badge">Disponível</span>
+            <span class="test-card__subtests">Laudo automático · 6–16 anos</span>
+          </div>
+        </div>
+        <div class="test-card" data-category="personalidade" data-aos>
+          <div class="test-card__glow"></div>
+          <span class="test-card__category test-card__category--personalidade">Personalidade</span>
+          <h3 class="test-card__name">BFP</h3>
+          <p class="test-card__desc">Bateria Fatorial de Personalidade. Avalia os cinco grandes fatores de personalidade com normas atualizadas.</p>
+          <div class="test-card__footer">
+            <span class="test-card__badge">Disponível</span>
+            <span class="test-card__subtests">Big Five · 17+ anos</span>
+          </div>
+        </div>
+        <div class="test-card test-card--soon" data-category="all" data-aos>
+          <div class="test-card__glow"></div>
+          <span class="test-card__category test-card__category--atencao">Em breve</span>
+          <h3 class="test-card__name">Novos Testes</h3>
+          <p class="test-card__desc">Estamos trabalhando continuamente para adicionar novos instrumentos à plataforma. Cadastre-se para ser notificado!</p>
+          <div class="test-card__footer">
+            <span class="test-card__badge test-card__badge--soon">Em desenvolvimento</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BENEFÍCIOS ═══════════════ -->
+  <section class="benefits" id="beneficios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Por que muda tudo</span>
+        <h2 class="section-title">A correção manual tem um custo que você não vê</h2>
+        <p class="section-subtitle">Não é só o tempo. É a atenção que você gasta contando quando poderia estar pensando.</p>
+      </div>
+      <div class="benefits__bento">
+        <div class="bento-card bento-card--hero bento-card--gradient" data-aos>
+          <div class="bento-card__metric">90%</div>
+          <h3>O tempo de volta para você</h3>
+          <p>A correção manual consome de 1 a 4 horas por avaliação. Com a plataforma, o mesmo resultado fica pronto em minutos — sem conferir, sem recontagem.</p>
+          <div class="bento-card__visual">
+            <div class="bento-clock">
+              <div class="bento-clock__hand bento-clock__hand--before"></div>
+            </div>
+            <svg class="bento-arrow" width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h36m-8-8l8 8-8 8"/></svg>
+            <div class="bento-clock bento-clock--fast">
+              <div class="bento-clock__hand bento-clock__hand--after"></div>
+            </div>
+          </div>
+        </div>
+        <div class="bento-card bento-card--hero bento-card--gradient-alt" data-aos>
+          <div class="bento-card__metric">100%</div>
+          <h3>Números que você pode assinar</h3>
+          <p>Cada resultado é calculado a partir das normas originais dos manuais. Você vê o número e já sabe exatamente de onde ele vem.</p>
+          <div class="bento-card__shield">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="rgba(255,255,255,.8)" stroke-width="2"/></svg>
+          </div>
+        </div>
+        <div class="bento-card" data-aos>
+          <div class="bento-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Organizado por paciente</h3>
+          <p>Cada avaliação fica salva na ficha do paciente. Revise resultados anteriores quando precisar retomar um caso.</p>
+        </div>
+        <div class="bento-card" data-aos>
+          <div class="bento-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Menos retrabalho</h3>
+          <p>Insira uma vez, veja tudo: pontuação bruta, ponderada, percentil e classificação — gerados juntos, sem etapas extras.</p>
+        </div>
+        <div class="bento-card" data-aos>
+          <div class="bento-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Do consultório ou de casa</h3>
+          <p>PWA que abre direto no navegador, sem instalação. Celular, tablet ou computador — onde estiver, funciona.</p>
+        </div>
+        <div class="bento-card" data-aos>
+          <div class="bento-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Você na clínica</h3>
+          <p>Com os cálculos fora do caminho, sobra atenção para o que só você sabe fazer: pensar sobre o caso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ RECURSOS ATUAIS ═══════════════ -->
+  <section class="features" id="recursos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">O PsiCorrection hoje</span>
+        <h2 class="section-title">Funcionalidades ativas que você pode usar agora</h2>
+        <p class="section-subtitle">Tudo que foi pedido no fluxo de psicologia no seu dia a dia.</p>
+      </div>
+      <div class="features__grid">
+        <article class="feature-card" data-aos>
+          <h3>Correção baseada em manuais</h3>
+          <p>NEUPSILIN Adulto/Infantil, WISC-IV, BFP com normas CFP/ABP sem adaptações. Resultados transparentes e auditáveis.</p>
+        </article>
+        <article class="feature-card" data-aos>
+          <h3>Gestão de pacientes integrada</h3>
+          <p>Cadastro de ficha, histórico de avaliações, edição e exclusão de casos. Pronto para o consultório real.</p>
+        </article>
+        <article class="feature-card" data-aos>
+          <h3>Teleconsulta Google Meet</h3>
+          <p>Gerar e compartilhar link de reunião em um clique. Agendamento simples no painel de gestão e acesso direto.</p>
+        </article>
+        <article class="feature-card" data-aos>
+          <h3>Laudo automático</h3>
+          <p>Geração instantânea de laudos preliminares com dados calculados e comentários técnicos de caso.</p>
+        </article>
+        <article class="feature-card" data-aos>
+          <h3>Modo PWA e Responsividade</h3>
+          <p>Uso cotidiano em desktop, tablet ou celular, com carregamento rápido e interface pensada para testes clínicos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CALCULADORA DE ECONOMIA ═══════════════ -->
+  <section class="calculator" id="economia">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Faça as contas</span>
+        <h2 class="section-title">Quanto tempo você perde por mês?</h2>
+        <p class="section-subtitle">Ajuste os valores e veja o impacto real no seu consultório</p>
+      </div>
+      <div class="calculator__grid">
+        <div class="calculator__inputs" data-aos>
+          <h3>Sua situação atual</h3>
+          <div class="calc-field">
+            <label for="calcTests">Quantos testes você corrige por mês?</label>
+            <input type="range" id="calcTests" min="1" max="80" value="10">
+            <div class="calc-field__value"><span id="calcTestsVal">10</span> testes</div>
+          </div>
+          <div class="calc-field">
+            <label for="calcHour">Quanto custa sua hora (R$)?</label>
+            <input type="range" id="calcHour" min="50" max="500" step="10" value="150">
+            <div class="calc-field__value">R$ <span id="calcHourVal">150</span></div>
+          </div>
+          <p class="calc-note">Estimativa baseada em ~1,5h por correção manual e ~8 min com a plataforma</p>
+        </div>
+        <div class="calculator__results" data-aos>
+          <h3>O que você recupera</h3>
+          <div class="calc-results">
+            <div class="calc-result">
+              <span class="calc-result__label">Economia mensal</span>
+              <span class="calc-result__value" id="calcMonthly">R$ 0</span>
+            </div>
+            <div class="calc-result">
+              <span class="calc-result__label">Economia anual</span>
+              <span class="calc-result__value calc-result__value--big" id="calcYearly">R$ 0</span>
+            </div>
+            <div class="calc-result">
+              <span class="calc-result__label">Horas livres / mês</span>
+              <span class="calc-result__value" id="calcHoursMonth">0h</span>
+            </div>
+            <div class="calc-result">
+              <span class="calc-result__label">Horas livres / ano</span>
+              <span class="calc-result__value" id="calcHoursYear">0h</span>
+            </div>
+          </div>
+          <a href="../Psicologia/index.html" class="btn btn--primary btn--lg btn--block btn--glow">Começar a recuperar esse tempo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PLANOS ═══════════════ -->
+  <section class="pricing" id="planos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Investimento</span>
+        <h2 class="section-title">Simples assim</h2>
+        <p class="section-subtitle">Escolha o plano certo para o seu consultório</p>
+      </div>
+      <div class="pricing__grid">
+        <!-- Gratuito -->
+        <div class="pricing-card" data-aos>
+          <h3 class="pricing-card__name">Gratuito</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">R$</span>
+            <span class="pricing-card__amount">0</span>
+          </div>
+          <p class="pricing-card__period">1 avaliação para experimentar</p>
+          <ul class="pricing-card__features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              1 avaliação completa
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Acesso a todos os testes
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Pontuação, percentil e classificação
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Sem cartão de crédito
+            </li>
+          </ul>
+          <a href="https://wa.me/5511946114970?text=Ol%C3%A1%2C+gostaria+de+criar+uma+conta+gratuita+no+PsiCorrection" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">Criar Conta</a>
+        </div>
+        <!-- Mensal -->
+        <div class="pricing-card" data-aos>
+          <h3 class="pricing-card__name">Mensal</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">R$</span>
+            <span class="pricing-card__amount">49</span>
+            <span class="pricing-card__cents">,90</span>
+          </div>
+          <p class="pricing-card__period">por mês</p>
+          <ul class="pricing-card__features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <strong>Correções ilimitadas</strong>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Todos os testes disponíveis
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Gestão de pacientes
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Laudos automatizados
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Suporte por e-mail
+            </li>
+          </ul>
+          <a href="https://wa.me/5511946114970?text=Ol%C3%A1%2C+gostaria+de+contratar+o+plano+Mensal+do+PsiCorrection+%28R%24+49%2C90%2Fm%C3%AAs%29" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">Assinar</a>
+        </div>
+        <!-- Anual -->
+        <div class="pricing-card pricing-card--popular" data-aos>
+          <span class="pricing-card__badge">Melhor Custo-Benefício</span>
+          <h3 class="pricing-card__name">Anual</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">R$</span>
+            <span class="pricing-card__amount">39</span>
+            <span class="pricing-card__cents">,90</span>
+          </div>
+          <p class="pricing-card__period">por mês · R$ 478,80/ano · <span class="pricing-card__save">-20%</span></p>
+          <ul class="pricing-card__features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <strong>Correções ilimitadas</strong>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Todos os testes disponíveis
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Gestão ilimitada de pacientes
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Laudos automatizados
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Suporte prioritário
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Atualizações gratuitas
+            </li>
+          </ul>
+          <a href="https://wa.me/5511946114970?text=Ol%C3%A1%2C+gostaria+de+contratar+o+plano+Anual+do+PsiCorrection+%28R%24+39%2C90%2Fm%C3%AAs+%2F+R%24+478%2C80%2Fano%29" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--block btn--glow">Assinar Agora</a>
+        </div>
+        <!-- Vitalício -->
+        <div class="pricing-card pricing-card--lifetime" data-aos>
+          <span class="pricing-card__badge">Pague Uma Vez</span>
+          <h3 class="pricing-card__name">Vitalício</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">R$</span>
+            <span class="pricing-card__amount">890</span>
+          </div>
+          <p class="pricing-card__period">pagamento único · acesso para sempre</p>
+          <ul class="pricing-card__features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <strong>Tudo do plano anual</strong>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Nunca mais paga mensalidade
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Acesso a futuros instrumentos
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Suporte vitalício
+            </li>
+          </ul>
+          <a href="https://wa.me/5511946114970?text=Ol%C3%A1%2C+gostaria+de+contratar+o+plano+Vitalício+do+PsiCorrection+%28R%24+890%2C00+pagamento+único%29" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">Garantir Acesso</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FAQ ═══════════════ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Perguntas diretas</span>
+        <h2 class="section-title">Ainda com dúvidas?</h2>
+        <p class="section-subtitle">Respostas sem enrolação</p>
+      </div>
+      <div class="faq__list">
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Como começo a usar?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Crie uma conta gratuita, informe seu CRP e comece a usar imediatamente. Não precisa instalar nada.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Preciso ter registro no CRP?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Sim. A plataforma é destinada a psicólogos. O CRP é solicitado no cadastro para garantir o uso ético dos instrumentos.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Os cálculos seguem os manuais dos instrumentos?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Sim. As fórmulas, tabelas normativas e classificações são extraídas diretamente dos manuais técnicos de cada instrumento, sem adaptações.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Quais testes estão disponíveis?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>NEUPSILIN Adulto, NEUPSILIN Infantil, WISC-IV e BFP. Novos instrumentos estão em desenvolvimento.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Quanto tempo economizo por correção?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Depende do instrumento. A correção manual costuma levar de 1 a 4 horas; na plataforma, o mesmo processo leva entre 5 e 10 minutos.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Funciona no celular?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Sim. O PsiCorrection é uma PWA totalmente responsiva. Funciona em qualquer dispositivo com navegador moderno, sem precisar instalar aplicativo.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Os dados dos meus pacientes ficam seguros?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Sim. Os dados são armazenados no Firebase com autenticação segura e regras de acesso individuais. Apenas você acessa as informações da sua conta.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Novos instrumentos serão adicionados?
+            <span class="faq-item__icon"></span>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Sim. A plataforma está em desenvolvimento ativo. Cadastre-se para ser avisado quando novos instrumentos estiverem disponíveis.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA FINAL ═══════════════ -->
+  <section class="cta-final">
+    <canvas class="cta-final__particles" id="ctaParticles"></canvas>
+    <div class="container cta-final__inner">
+      <h2>A primeira correção leva menos de 10 minutos</h2>
+      <p>Crie sua conta, escolha um instrumento, insira os dados. É simples assim.</p>
+      <a href="https://wa.me/5511946114970?text=Ol%C3%A1%2C+gostaria+de+criar+uma+conta+gratuita+no+PsiCorrection" target="_blank" rel="noopener noreferrer" class="btn btn--white btn--lg btn--magnetic" data-magnetic>
+        Criar conta gratuita
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="../Psicologia/img/Psi.png" alt="PsiCorrection" class="footer__logo-img">
+          <span>PsiCorrection</span>
+        </div>
+        <p>Correção de testes psicológicos sem tabelas, sem planilha, sem erro.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Plataforma</h4>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#testes">Testes</a>
+        <a href="#economia">Economia</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer__links">
+        <h4>Acesso</h4>
+        <a href="../Psicologia/index.html">Entrar</a>
+        <a href="../Psicologia/index.html">Criar Conta</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 PsiCorrection. Todos os direitos reservados.</p>
+        <a href="https://www.instagram.com/luanoliveirags/" target="_blank" rel="noopener noreferrer" class="footer__credit">
+          Desenvolvido por <strong>Luan Gs</strong>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>

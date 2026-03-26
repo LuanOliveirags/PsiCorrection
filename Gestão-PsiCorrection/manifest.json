@@ -1,0 +1,21 @@
+{
+  "name": "PsiCorrection — Sistema Clínico",
+  "short_name": "PsiCorrection",
+  "description": "Plataforma para correção de testes psicológicos",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1d4ed8",
+  "theme_color": "#1d4ed8",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "img/Psi.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "productivity"]
+}

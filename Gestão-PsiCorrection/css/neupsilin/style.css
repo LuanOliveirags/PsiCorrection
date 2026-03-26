@@ -1,0 +1,956 @@
+/* ══════════════════════════════════════════════
+   ABAS — NEUPSILIN (Adulto + Infantil)
+══════════════════════════════════════════════ */
+.tab {
+  background: none;
+  border: none;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  border-radius: 6px 6px 0 0;
+  transition: color .15s, border-color .15s;
+}
+.tab:hover { color: var(--primary); }
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Conteúdo das abas */
+.tab-desc {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.tab-content h4,
+.ninf-tab-content h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+/* ══════════════════════════════════════════════
+   NEUPSILIN-INF — Redesign Criativo
+══════════════════════════════════════════════ */
+
+/* ── Hero Banner ── */
+.ninf-hero {
+  background: linear-gradient(135deg, #059669 0%, #10b981 40%, #34d399 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 28px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.ninf-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -30px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,.08);
+  border-radius: 50%;
+}
+.ninf-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  right: 60px;
+  width: 140px;
+  height: 140px;
+  background: rgba(255,255,255,.05);
+  border-radius: 50%;
+}
+.ninf-hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.ninf-hero-icon {
+  font-size: 48px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,.18);
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ninf-hero-text h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  letter-spacing: -.3px;
+}
+.ninf-hero-text p {
+  font-size: 14px;
+  opacity: .88;
+  margin: 0;
+  line-height: 1.5;
+}
+.ninf-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* ── Section Steps / Numbered Cards ── */
+.ninf-section-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.ninf-section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px;
+  background: linear-gradient(to right, #f0fdf4, #fff);
+  border-bottom: 1px solid #e2e8f0;
+}
+.ninf-step-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(16,185,129,.3);
+}
+.ninf-section-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.ninf-section-header h3 span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+.ninf-section-body {
+  padding: 24px;
+}
+
+/* ── Instructions Callout ── */
+.ninf-instructions {
+  background: linear-gradient(to right, #ecfdf5, #f0fdf4);
+  border: 1px solid #a7f3d0;
+  border-left: 4px solid #10b981;
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.ninf-instructions-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 8px;
+}
+.ninf-instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ninf-instructions li {
+  font-size: 12.5px;
+  color: #047857;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.ninf-instructions li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* ── Domain Tabs (Pill Style) ── */
+.ninf-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border);
+}
+.ninf-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all .2s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.ninf-tab .tab-emoji {
+  font-size: 15px;
+  line-height: 1;
+}
+.ninf-tab:hover {
+  border-color: #86efac;
+  color: #065f46;
+  background: #f0fdf4;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(16,185,129,.12);
+}
+.ninf-tab.active {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(16,185,129,.3);
+  transform: translateY(-1px);
+}
+
+/* Domain-specific active colors */
+.ninf-tab[data-ninf-tab="orientacao"].active { background: linear-gradient(135deg, #059669, #10b981); }
+.ninf-tab[data-ninf-tab="atencao"].active    { background: linear-gradient(135deg, #d97706, #f59e0b); }
+.ninf-tab[data-ninf-tab="percepcao"].active   { background: linear-gradient(135deg, #ea580c, #f97316); }
+.ninf-tab[data-ninf-tab="memoria"].active     { background: linear-gradient(135deg, #475569, #64748b); }
+.ninf-tab[data-ninf-tab="linguagem"].active   { background: linear-gradient(135deg, #dc2626, #ef4444); }
+.ninf-tab[data-ninf-tab="funcoes"].active     { background: linear-gradient(135deg, #0d9488, #14b8a6); }
+.ninf-tab[data-ninf-tab="habilidades"].active { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+.ninf-tab[data-ninf-tab="praxias"].active     { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+
+/* Domain-specific hover colors */
+.ninf-tab[data-ninf-tab="atencao"]:hover    { border-color: #fde68a; background: #fffbeb; color: #92400e; }
+.ninf-tab[data-ninf-tab="percepcao"]:hover   { border-color: #fed7aa; background: #fff7ed; color: #9a3412; }
+.ninf-tab[data-ninf-tab="memoria"]:hover     { border-color: #cbd5e1; background: #f8fafc; color: #334155; }
+.ninf-tab[data-ninf-tab="linguagem"]:hover   { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+.ninf-tab[data-ninf-tab="funcoes"]:hover     { border-color: #99f6e4; background: #f0fdfa; color: #115e59; }
+.ninf-tab[data-ninf-tab="habilidades"]:hover { border-color: #c4b5fd; background: #f5f3ff; color: #5b21b6; }
+.ninf-tab[data-ninf-tab="praxias"]:hover     { border-color: #bfdbfe; background: #eff6ff; color: #1e40af; }
+
+.ninf-tab-content { display: none; padding: 24px; }
+.ninf-tab-content.active { display: block; }
+
+/* Domain header inside tab content */
+.ninf-domain-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+.ninf-domain-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.ninf-domain-icon.orientacao { background: #dcfce7; }
+.ninf-domain-icon.atencao    { background: #fef3c7; }
+.ninf-domain-icon.percepcao  { background: #ffedd5; }
+.ninf-domain-icon.memoria    { background: #f1f5f9; }
+.ninf-domain-icon.linguagem  { background: #fee2e2; }
+.ninf-domain-icon.funcoes    { background: #ccfbf1; }
+.ninf-domain-icon.habilidades { background: #ede9fe; }
+.ninf-domain-icon.praxias    { background: #dbeafe; }
+
+.ninf-domain-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 2px;
+}
+.ninf-domain-info p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ── Subteste Items (Card Style) ── */
+.ninf-tab-content .subteste-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.ninf-tab-content .subteste-item {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.ninf-tab-content .subteste-item:hover {
+  border-color: #a7f3d0;
+  box-shadow: 0 4px 12px rgba(16,185,129,.08);
+}
+.ninf-tab-content .subteste-item label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ninf-tab-content .subteste-item .max {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.ninf-tab-content .subteste-item input {
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  padding: 10px 14px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+  transition: border-color .15s, box-shadow .15s;
+  background: #f8fafc;
+}
+.ninf-tab-content .subteste-item input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16,185,129,.15);
+  background: #fff;
+}
+
+/* ── Subtotal Bar (Enhanced) ── */
+.ninf-tab-content .subtotal-bar {
+  background: linear-gradient(to right, #f0fdf4, #ecfdf5);
+  border: 1.5px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.ninf-tab-content .subtotal-bar strong {
+  font-size: 20px;
+  font-weight: 800;
+  color: #059669;
+}
+
+/* Override per-domain subtotal colors */
+#ninf-tab-atencao .subtotal-bar { background: linear-gradient(to right, #fffbeb, #fef3c7); border-color: #fde68a; color: #92400e; }
+#ninf-tab-atencao .subtotal-bar strong { color: #d97706; }
+#ninf-tab-percepcao .subtotal-bar { background: linear-gradient(to right, #fff7ed, #ffedd5); border-color: #fed7aa; color: #9a3412; }
+#ninf-tab-percepcao .subtotal-bar strong { color: #ea580c; }
+#ninf-tab-memoria .subtotal-bar { background: linear-gradient(to right, #f8fafc, #f1f5f9); border-color: #cbd5e1; color: #334155; }
+#ninf-tab-memoria .subtotal-bar strong { color: #475569; }
+#ninf-tab-linguagem .subtotal-bar { background: linear-gradient(to right, #fef2f2, #fee2e2); border-color: #fecaca; color: #991b1b; }
+#ninf-tab-linguagem .subtotal-bar strong { color: #dc2626; }
+#ninf-tab-funcoes .subtotal-bar { background: linear-gradient(to right, #f0fdfa, #ccfbf1); border-color: #99f6e4; color: #115e59; }
+#ninf-tab-funcoes .subtotal-bar strong { color: #0d9488; }
+#ninf-tab-habilidades .subtotal-bar { background: linear-gradient(to right, #f5f3ff, #ede9fe); border-color: #c4b5fd; color: #5b21b6; }
+#ninf-tab-habilidades .subtotal-bar strong { color: #7c3aed; }
+#ninf-tab-praxias .subtotal-bar { background: linear-gradient(to right, #eff6ff, #dbeafe); border-color: #bfdbfe; color: #1e40af; }
+#ninf-tab-praxias .subtotal-bar strong { color: #2563eb; }
+
+/* ── Observations Card ── */
+.ninf-obs-card textarea {
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  background: #f8fafc;
+  transition: border-color .15s, box-shadow .15s;
+}
+.ninf-obs-card textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+  background: #fff;
+}
+
+/* ── Action Buttons (NEUPSILIN-INF) ── */
+.ninf-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.ninf-btn-clear {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+  font-family: inherit;
+}
+.ninf-btn-clear:hover {
+  background: #e2e8f0;
+  color: var(--text);
+}
+.ninf-btn-calculate {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(16,185,129,.3);
+}
+.ninf-btn-calculate:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16,185,129,.4);
+}
+.ninf-btn-calculate:active {
+  transform: translateY(0);
+}
+
+/* ── Result Card (Enhanced for INF) ── */
+#ninf-resultado-inline {
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+#ninf-resultado-inline > h3 {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+  padding: 18px 24px;
+  margin: 0 0 0;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#ninf-resultado-inline > h3::before {
+  content: '📊';
+  font-size: 20px;
+}
+
+/* ── Responsive INF ── */
+@media (max-width: 768px) {
+  .ninf-hero { padding: 24px 20px; }
+  .ninf-hero-content { flex-direction: column; text-align: center; gap: 16px; }
+  .ninf-hero-text h2 { font-size: 20px; }
+  .ninf-tab-bar { padding: 14px 16px; gap: 6px; }
+  .ninf-tab { padding: 6px 10px; font-size: 11.5px; }
+  .ninf-tab .tab-emoji { font-size: 13px; }
+  .ninf-tab-content { padding: 16px; }
+  .ninf-tab-content .subteste-grid { grid-template-columns: 1fr; }
+  .ninf-section-body { padding: 16px; }
+}
+
+/* ══════════════════════════════════════════════
+   NEUPSILIN ADULTO — Redesign
+══════════════════════════════════════════════ */
+
+/* ── Hero Banner Adulto ── */
+.neup-hero {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 40%, #3b82f6 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 28px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.neup-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -30px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,.08);
+  border-radius: 50%;
+}
+.neup-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  right: 60px;
+  width: 140px;
+  height: 140px;
+  background: rgba(255,255,255,.05);
+  border-radius: 50%;
+}
+.neup-hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.neup-hero-icon {
+  font-size: 48px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,.18);
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.neup-hero-text h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  letter-spacing: -.3px;
+}
+.neup-hero-text p {
+  font-size: 14px;
+  opacity: .88;
+  margin: 0;
+  line-height: 1.5;
+}
+.neup-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* ── Section Cards Adulto ── */
+.neup-section-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.neup-section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px;
+  background: linear-gradient(to right, #eff6ff, #fff);
+  border-bottom: 1px solid #e2e8f0;
+}
+.neup-step-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(37,99,235,.3);
+}
+.neup-section-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.neup-section-header h3 span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+.neup-section-body {
+  padding: 24px;
+}
+
+/* ── Instructions Adulto ── */
+.neup-instructions {
+  background: linear-gradient(to right, #eff6ff, #dbeafe);
+  border: 1px solid #93c5fd;
+  border-left: 4px solid #2563eb;
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.neup-instructions-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 8px;
+}
+.neup-instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.neup-instructions li {
+  font-size: 12.5px;
+  color: #1d4ed8;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.neup-instructions li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+/* ── Domain Tabs Adulto (Pill Style) ── */
+.neup-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border);
+}
+.tab.neup-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all .2s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.tab.neup-pill .tab-emoji {
+  font-size: 15px;
+  line-height: 1;
+}
+.tab.neup-pill:hover {
+  border-color: #93c5fd;
+  color: #1e40af;
+  background: #eff6ff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(37,99,235,.12);
+}
+.tab.neup-pill.active {
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(37,99,235,.3);
+  transform: translateY(-1px);
+}
+
+/* Domain-specific active colors Adulto */
+.tab.neup-pill[data-tab="orientacao"].active { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+.tab.neup-pill[data-tab="atencao"].active    { background: linear-gradient(135deg, #d97706, #f59e0b); }
+.tab.neup-pill[data-tab="percepcao"].active   { background: linear-gradient(135deg, #ea580c, #f97316); }
+.tab.neup-pill[data-tab="memoria"].active     { background: linear-gradient(135deg, #475569, #64748b); }
+.tab.neup-pill[data-tab="linguagem"].active   { background: linear-gradient(135deg, #dc2626, #ef4444); }
+.tab.neup-pill[data-tab="funcoes"].active     { background: linear-gradient(135deg, #0d9488, #14b8a6); }
+.tab.neup-pill[data-tab="habilidades"].active { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+.tab.neup-pill[data-tab="praxias"].active     { background: linear-gradient(135deg, #059669, #10b981); }
+
+/* Domain-specific hover Adulto */
+.tab.neup-pill[data-tab="atencao"]:hover    { border-color: #fde68a; background: #fffbeb; color: #92400e; }
+.tab.neup-pill[data-tab="percepcao"]:hover   { border-color: #fed7aa; background: #fff7ed; color: #9a3412; }
+.tab.neup-pill[data-tab="memoria"]:hover     { border-color: #cbd5e1; background: #f8fafc; color: #334155; }
+.tab.neup-pill[data-tab="linguagem"]:hover   { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+.tab.neup-pill[data-tab="funcoes"]:hover     { border-color: #99f6e4; background: #f0fdfa; color: #115e59; }
+.tab.neup-pill[data-tab="habilidades"]:hover { border-color: #c4b5fd; background: #f5f3ff; color: #5b21b6; }
+.tab.neup-pill[data-tab="praxias"]:hover     { border-color: #a7f3d0; background: #f0fdf4; color: #065f46; }
+
+/* Domain header Adulto */
+.neup-domain-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+.neup-domain-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.neup-domain-icon.orientacao { background: #dbeafe; }
+.neup-domain-icon.atencao    { background: #fef3c7; }
+.neup-domain-icon.percepcao  { background: #ffedd5; }
+.neup-domain-icon.memoria    { background: #f1f5f9; }
+.neup-domain-icon.linguagem  { background: #fee2e2; }
+.neup-domain-icon.funcoes    { background: #ccfbf1; }
+.neup-domain-icon.habilidades { background: #ede9fe; }
+.neup-domain-icon.praxias    { background: #dcfce7; }
+
+.neup-domain-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 2px;
+}
+.neup-domain-info p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Subteste items Adulto (card style) */
+#sec-nova-avaliacao .tab-content .subteste-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+#sec-nova-avaliacao .tab-content .subteste-item {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color .2s, box-shadow .2s;
+}
+#sec-nova-avaliacao .tab-content .subteste-item:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 12px rgba(37,99,235,.08);
+}
+#sec-nova-avaliacao .tab-content .subteste-item label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#sec-nova-avaliacao .tab-content .subteste-item .max {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+#sec-nova-avaliacao .tab-content .subteste-item input {
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  padding: 10px 14px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+  transition: border-color .15s, box-shadow .15s;
+  background: #f8fafc;
+}
+#sec-nova-avaliacao .tab-content .subteste-item input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+  background: #fff;
+}
+
+/* Subtotal per-domain colors Adulto */
+#sec-nova-avaliacao .tab-content .subtotal-bar {
+  background: linear-gradient(to right, #eff6ff, #dbeafe);
+  border: 1.5px solid #93c5fd;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e40af;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+#sec-nova-avaliacao .tab-content .subtotal-bar strong {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+#tab-atencao .subtotal-bar { background: linear-gradient(to right, #fffbeb, #fef3c7) !important; border-color: #fde68a !important; color: #92400e !important; }
+#tab-atencao .subtotal-bar strong { color: #d97706 !important; }
+#tab-percepcao .subtotal-bar { background: linear-gradient(to right, #fff7ed, #ffedd5) !important; border-color: #fed7aa !important; color: #9a3412 !important; }
+#tab-percepcao .subtotal-bar strong { color: #ea580c !important; }
+#tab-memoria .subtotal-bar { background: linear-gradient(to right, #f8fafc, #f1f5f9) !important; border-color: #cbd5e1 !important; color: #334155 !important; }
+#tab-memoria .subtotal-bar strong { color: #475569 !important; }
+#tab-linguagem .subtotal-bar { background: linear-gradient(to right, #fef2f2, #fee2e2) !important; border-color: #fecaca !important; color: #991b1b !important; }
+#tab-linguagem .subtotal-bar strong { color: #dc2626 !important; }
+#tab-funcoes .subtotal-bar { background: linear-gradient(to right, #f0fdfa, #ccfbf1) !important; border-color: #99f6e4 !important; color: #115e59 !important; }
+#tab-funcoes .subtotal-bar strong { color: #0d9488 !important; }
+#tab-habilidades .subtotal-bar { background: linear-gradient(to right, #f5f3ff, #ede9fe) !important; border-color: #c4b5fd !important; color: #5b21b6 !important; }
+#tab-habilidades .subtotal-bar strong { color: #7c3aed !important; }
+#tab-praxias .subtotal-bar { background: linear-gradient(to right, #f0fdf4, #dcfce7) !important; border-color: #a7f3d0 !important; color: #065f46 !important; }
+#tab-praxias .subtotal-bar strong { color: #059669 !important; }
+
+/* Tab content inside section-card */
+.neup-section-card .tab-content { padding: 24px; }
+
+/* Obs card Adulto */
+.neup-obs-card textarea {
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  background: #f8fafc;
+  transition: border-color .15s, box-shadow .15s;
+}
+.neup-obs-card textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+  background: #fff;
+}
+
+/* Action Buttons Adulto */
+.neup-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.neup-btn-clear {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+  font-family: inherit;
+}
+.neup-btn-clear:hover {
+  background: #e2e8f0;
+  color: var(--text);
+}
+.neup-btn-calculate {
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(37,99,235,.3);
+}
+.neup-btn-calculate:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37,99,235,.4);
+}
+.neup-btn-calculate:active { transform: translateY(0); }
+
+/* Result Card Adulto */
+#resultado-inline {
+  border: none !important;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-md) !important;
+}
+#resultado-inline > h3 {
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  color: #fff;
+  padding: 18px 24px;
+  margin: 0;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#resultado-inline > h3::before {
+  content: '📊';
+  font-size: 20px;
+}
+
+/* Responsive Adulto */
+@media (max-width: 768px) {
+  .neup-hero { padding: 24px 20px; }
+  .neup-hero-content { flex-direction: column; text-align: center; gap: 16px; }
+  .neup-hero-text h2 { font-size: 20px; }
+  .neup-tab-bar { padding: 14px 16px; gap: 6px; }
+  .tab.neup-pill { padding: 6px 10px; font-size: 11.5px; }
+  .tab.neup-pill .tab-emoji { font-size: 13px; }
+  .neup-section-card .tab-content { padding: 16px; }
+  #sec-nova-avaliacao .tab-content .subteste-grid { grid-template-columns: 1fr; }
+  .neup-section-body { padding: 16px; }
+}

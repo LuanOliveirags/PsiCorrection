@@ -1,0 +1,233 @@
+﻿/* =============================================================
+   PsiCorrection Landing — Responsividade  |  css/responsive.css
+   Carregado DEPOIS de landing.css.
+
+   Breakpoints:
+     1100px → Grid de planos 2 cols antes do limite
+      992px → Tablets landscape / laptops menores
+      768px → Tablets portrait / celulares
+      480px → Celulares médios
+      360px → Celulares pequenos (iPhone SE…)
+============================================================= */
+
+/* ─── Garantia base de não-overflow ─────────────────────────── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* garante que todos os grids não causem scroll horizontal */
+.container,
+.hero__inner,
+.steps,
+.tests__grid,
+.benefits__bento,
+.calculator__grid,
+.pricing__grid,
+.faq__list {
+  min-width: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   1100px — Pricing de 4 cols → 2 cols antes do colapso total
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .pricing__grid { grid-template-columns: repeat(2, 1fr); max-width: 860px; gap: 18px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   992px — Tablets landscape & laptops menores
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 992px) {
+  /* Container */
+  .container { padding: 0 24px; }
+
+  /* Hero — layout em coluna, centralizado */
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    text-align: center;
+  }
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .hero__subtitle  { max-width: 560px; margin-left: auto; margin-right: auto; }
+  .hero__typing    { margin-left: auto; margin-right: auto; }
+  .hero__cta       { justify-content: center; flex-wrap: wrap; }
+  .hero__trust     { justify-content: center; flex-wrap: wrap; }
+  .hero__visual    { display: none; }
+  .hero__scroll-hint { display: none; }
+
+  /* Reduz orbs pesados */
+  .hero__orb--1 { width: 340px; height: 340px; right: -80px; top: -100px; }
+  .hero__orb--2 { width: 220px; height: 220px; left: -60px; }
+  .hero__orb--3 { display: none; }
+
+  /* Como funciona */
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .steps::before { display: none; }
+
+  /* Benefícios */
+  .benefits__bento { grid-template-columns: repeat(2, 1fr); }
+  .bento-card--hero { grid-column: span 2; }
+
+  /* Calculadora */
+  .calculator__grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+
+  /* Pricing */
+  .pricing__grid { grid-template-columns: repeat(2, 1fr); max-width: 860px; }
+
+  /* Footer */
+  .footer__inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   768px — Tablets portrait & celulares grandes
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Container */
+  .container { padding: 0 20px; }
+
+  /* Nav */
+  .nav__links,
+  .nav__actions  { display: none; }
+  .nav__hamburger { display: flex; }
+
+  /* Hero */
+  .hero { padding: 100px 0 70px; min-height: auto; }
+  .hero__title   { font-size: clamp(1.7rem, 5.5vw, 2.1rem); }
+  .hero__subtitle { font-size: 1rem; }
+  .hero__badge   { font-size: .78rem; padding: 6px 16px; }
+  .hero__orb--1  { width: 220px; height: 220px; right: -60px; top: -60px; }
+  .hero__orb--2  { width: 160px; height: 160px; left: -50px; }
+
+  /* Section paddings menores */
+  .how-it-works,
+  .tests,
+  .benefits,
+  .calculator,
+  .pricing,
+  .faq { padding: 72px 0; }
+
+  .section-header { margin-bottom: 40px; }
+  .section-subtitle { font-size: 1rem; }
+
+  /* Como funciona */
+  .steps { grid-template-columns: 1fr; max-width: 360px; margin-inline: auto; gap: 32px; }
+
+  /* Comparação */
+  .comparison         { flex-direction: column; border-radius: var(--radius-lg); }
+  .comparison__vs     {
+    width: 100%; height: 48px;
+    writing-mode: horizontal-tb;
+    border: none;
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  /* Testes */
+  .tests__grid  { grid-template-columns: repeat(2, 1fr); }
+  .tests__filters { flex-wrap: wrap; justify-content: center; gap: 6px; }
+
+  /* Benefícios */
+  .benefits__bento { grid-template-columns: 1fr; }
+  .bento-card--hero { grid-column: span 1; }
+
+  /* Calculadora */
+  .calculator__inputs,
+  .calculator__results { padding: 28px 22px; }
+
+  /* Pricing */
+  .pricing__grid { grid-template-columns: 1fr; max-width: 420px; }
+  .pricing-card--popular { order: -1; } /* plano popular aparece primeiro */
+
+  /* Footer */
+  .footer { padding: 48px 0 0; }
+  .footer__inner { grid-template-columns: 1fr; gap: 28px; }
+  .footer__bottom .container { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   480px — Celulares médios
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  /* Container */
+  .container { padding: 0 16px; }
+
+  /* Tipografia */
+  .section-title  { font-size: 1.65rem; }
+  .section-subtitle { font-size: .92rem; }
+
+  /* Hero */
+  .hero          { padding: 88px 0 56px; }
+  .hero__title   { font-size: clamp(1.6rem, 7vw, 1.9rem); }
+  .hero__subtitle { font-size: .94rem; max-width: 100%; }
+  .hero__badge   { font-size: .74rem; }
+  .hero__typing  { width: 100%; max-width: 100%; justify-content: center; font-size: .88rem; }
+  .hero__cta     { flex-direction: column; width: 100%; }
+  .hero__cta .btn { width: 100%; justify-content: center; }
+  .hero__trust   { gap: 10px; }
+  .hero__orb--1  { width: 160px; height: 160px; right: -40px; top: -40px; filter: blur(50px); }
+  .hero__orb--2  { width: 120px; height: 120px; left: -30px; filter: blur(50px); }
+
+  /* Steps */
+  .steps { max-width: 100%; }
+  .step  { padding: 28px 16px 22px; }
+  .step h3 { font-size: .98rem; }
+
+  /* Testes */
+  .tests__grid { grid-template-columns: 1fr; }
+  .tests__filter { padding: 7px 14px; font-size: .78rem; }
+
+  /* Bento */
+  .bento-card   { padding: 22px 18px; }
+  .bento-card__metric { font-size: 2.4rem; }
+
+  /* Calculadora */
+  .calculator__inputs,
+  .calculator__results { padding: 20px 16px; }
+  .calc-results { grid-template-columns: 1fr; }
+
+  /* Pricing */
+  .pricing__grid   { grid-template-columns: 1fr; max-width: 100%; }
+  .pricing-card    { padding: 32px 20px; }
+  .pricing-card__amount { font-size: 3.2rem; }
+
+  /* FAQ */
+  .faq__list           { gap: 8px; }
+  .faq-item__question  { padding: 16px 18px; font-size: .87rem; }
+  .faq-item__answer    { padding: 0 18px 16px; }
+
+  /* CTA Final */
+  .cta-final { padding: 80px 0; }
+  .cta-final h2 { font-size: 1.65rem; }
+  .cta-final p  { font-size: .98rem; margin-bottom: 28px; }
+
+  /* Footer */
+  .footer__brand p { max-width: 100%; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   360px — Celulares muito pequenos
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 360px) {
+  .container          { padding: 0 12px; }
+  .hero__title        { font-size: 1.48rem; }
+  .section-title      { font-size: 1.42rem; }
+  .btn                { padding: 11px 18px; font-size: .88rem; }
+  .btn--lg            { padding: 13px 20px; font-size: .92rem; }
+  .pricing-card       { padding: 28px 16px; }
+  .nav__logo span     { display: none; } /* apenas ícone no logo */
+  .hero__badge        { padding: 5px 12px; font-size: .7rem; }
+  .bento-card         { padding: 18px 14px; }
+  .step               { padding: 24px 12px 18px; }
+  .faq-item__question { padding: 14px 16px; font-size: .84rem; }
+}

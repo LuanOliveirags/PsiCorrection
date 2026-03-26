@@ -1,0 +1,51 @@
+/* ═══════════════════════════════════════════════════════
+   PACIENTES — Estilos da Ficha Cadastral
+═══════════════════════════════════════════════════════ */
+
+/* Label de seção dentro dos modais de paciente */
+.form-section-label {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .5px;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+/* Grid de informações na visualização da ficha */
+.pac-ficha-row {
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.pac-ficha-row-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+.pac-ficha-row-value {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Blocos de queixa e observações */
+.pac-bloco-queixa {
+  margin-bottom: 14px;
+}
+.pac-bloco-titulo {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: .5px;
+  margin: 0 0 6px;
+}
+.pac-bloco-texto {
+  background: var(--bg-body);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.pac-bloco-primary { border-left: 3px solid var(--primary); }
+.pac-bloco-warning  { border-left: 3px solid #f59e0b; }
