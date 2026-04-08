@@ -25,9 +25,22 @@ async function calcularEsalvar() {
   const nasc = document.getElementById("pac-nasc").value;
   const esc  = document.getElementById("pac-esc").value;
   const sexo = document.getElementById("pac-sexo").value;
+  const tipoEscola = document.getElementById("pac-tipo-escola")?.value || "";
+  const serie      = document.getElementById("pac-serie")?.value || "";
 
-  if (!nome || !nasc || !esc) {
-    alert("Preencha Nome, Data de Nascimento e Escolaridade do paciente.");
+  const idade = nasc ? calcularIdade(nasc) : NaN;
+  const isAdol = idade >= 12 && idade <= 18;
+
+  if (!nome || !nasc) {
+    alert("Preencha Nome e Data de Nascimento do paciente.");
+    return;
+  }
+  if (!isAdol && !esc) {
+    alert("Selecione a Escolaridade do paciente.");
+    return;
+  }
+  if (isAdol && (!tipoEscola || !serie)) {
+    alert("Para adolescentes, selecione o Tipo de Escola e a Série.");
     return;
   }
 
@@ -36,9 +49,8 @@ async function calcularEsalvar() {
     return;
   }
 
-  const idade = calcularIdade(nasc);
   if (idade < 12 || idade > 90) {
-    alert("Idade fora do intervalo normativo do NEUPSILIN Adulto (12–90 anos).\nPara crianças de 6–12 anos, utilize o NEUPSILIN-INF.");
+    alert("Idade fora do intervalo normativo do NEUPSILIN (12–90 anos).");
     return;
   }
 
@@ -60,7 +72,7 @@ async function calcularEsalvar() {
   const resultados = {};
   const zList = [];
   for (const area of areas) {
-    const r = calcularZArea(area, escores[area].total, esc, idade);
+    const r = calcularZArea(area, escores[area].total, esc, idade, tipoEscola, serie);
     resultados[area] = { ...r, score: escores[area].total, max: MAX_SCORES[area], subs: escores[area].subs };
     zList.push(r.z);
   }
@@ -74,7 +86,7 @@ async function calcularEsalvar() {
     tipoTeste: "NEUPSILIN-ADULTO",
     data: new Date().toISOString(),
     profissional: usuarioLogado,
-    paciente: { nome, nasc, esc, sexo, idade },
+    paciente: { nome, nasc, esc: isAdol ? `${tipoEscola}_${serie}` : esc, sexo, idade, tipoEscola, serie },
     escores,
     resultados,
     totalBruto,
@@ -107,22 +119,31 @@ function renderizarResultadoInline(av) {
 
 function buildResultadoHTML(av, ctx) {
   const areas = ["orientacao","atencao","percepcao","memoria","habilidades","linguagem","funcoes","praxias"];
-  const escMap = { baixa: "Baixa (0–4 anos)", media: "Média (5–11 anos)", alta: "Alta (12+ anos)" };
+  const escMap = { baixa: "Baixa (1–4 anos)", media: "Média (5–8 anos)", alta: "Alta (9+ anos)" };
+  const serieMap = {
+    fund_setima: "7ª Fundamental", fund_oitava: "8ª Fundamental",
+    med_primeiro: "1º Médio", med_segundo: "2º Médio", med_terceiro: "3º Médio"
+  };
+  const tipoMap = { particular: "Particular", publica: "Pública" };
 
-  const normasReais = Object.values(av.resultados).every(r => r.normalizacaoUsada === "real");
-  const bannerNorma = normasReais ? "" : `
+  const escLabel = av.paciente.tipoEscola
+    ? `${tipoMap[av.paciente.tipoEscola] || av.paciente.tipoEscola} — ${serieMap[av.paciente.serie] || av.paciente.serie}`
+    : (escMap[av.paciente.esc] || av.paciente.esc);
+
+  const normasOficiais = Object.values(av.resultados).every(r => r.normalizacaoUsada === "manual");
+  const bannerNorma = normasOficiais ? "" : `
     <div style="background:rgba(217,119,6,0.07);border:1px solid rgba(217,119,6,0.35);border-radius:8px;padding:9px 13px;margin-bottom:14px;font-size:12px;color:#b45309;display:flex;gap:8px;align-items:flex-start">
       <span style="font-size:15px;line-height:1">⚠️</span>
-      <span><strong>Normas estimadas.</strong> Os valores de média e DP ainda são aproximações — aguardando dados do Manual oficial (Vetor Editora). Os z-scores são aproximados.</span>
+      <span><strong>Normas indisponíveis.</strong> Não foi possível carregar as normas do Firestore. Os z-scores podem estar incorretos.</span>
     </div>`;
 
   let areasHTML = "";
   for (const area of areas) {
     const r = av.resultados[area];
     const pct = Math.round((r.score / r.max) * 100);
-    const normaTag = r.normalizacaoUsada === "real"
+    const normaTag = r.normalizacaoUsada === "manual"
       ? `<span style="font-size:10px;color:var(--primary);font-weight:600">● norma oficial</span>`
-      : `<span style="font-size:10px;color:#b45309">● norma estimada</span>`;
+      : `<span style="font-size:10px;color:#b45309">● norma indisponível</span>`;
     areasHTML += `
       <div class="resultado-area">
         <div class="area-nome">${AREA_NOMES[area]}</div>
@@ -139,7 +160,7 @@ function buildResultadoHTML(av, ctx) {
     <div style="margin-bottom:12px;font-size:13px;color:var(--text-muted)">
       <strong>${av.paciente.nome}</strong> &nbsp;|&nbsp;
       ${av.paciente.idade} anos &nbsp;|&nbsp;
-      Escolaridade: ${escMap[av.paciente.esc]} &nbsp;|&nbsp;
+      Escolaridade: ${escLabel} &nbsp;|&nbsp;
       Avaliação em: ${formatarData(av.data)}
     </div>
     ${bannerNorma}
@@ -311,7 +332,10 @@ function gerarInterpretacao(av) {
   }
 
   txt += `<br><br>`;
-  txt += `Os escores brutos foram comparados às normas do NEUPSILIN Adulto, estratificadas por faixa etária (${getFaixaEtaria(av.paciente.idade)} anos) e nível de escolaridade. Recomenda-se que estes achados sejam interpretados à luz do contexto clínico, da história de vida e de eventuais queixas relatadas pelo paciente.`;
+  const faixaDesc = av.paciente.idade <= 18
+    ? `adolescente — ${av.paciente.serie ? (({fund_setima:"7ª Fund.",fund_oitava:"8ª Fund.",med_primeiro:"1º Méd.",med_segundo:"2º Méd.",med_terceiro:"3º Méd."})[av.paciente.serie] || av.paciente.serie) : ""}`
+    : `${getFaixaEtaria(av.paciente.idade)} anos`;
+  txt += `Os escores brutos foram comparados às normas do NEUPSILIN, estratificadas por ${av.paciente.idade <= 18 ? "tipo de escola e série" : "faixa etária e nível de escolaridade"} (${faixaDesc}). Recomenda-se que estes achados sejam interpretados à luz do contexto clínico, da história de vida e de eventuais queixas relatadas pelo paciente.`;
   return txt;
 }
 
@@ -383,13 +407,21 @@ function exportarPDF(avParam) {
   doc.setFont("helvetica", "bold");
   doc.text("I. IDENTIFICAÇÃO DO AVALIADO", L + 4, Y + 6);
 
-  const escMap = { baixa: "Baixa (0–4 anos de escolaridade)", media: "Média (5–11 anos de escolaridade)", alta: "Alta (12 ou mais anos de escolaridade)" };
+  const escMap = { baixa: "Baixa (1–4 anos de escolaridade)", media: "Média (5–8 anos de escolaridade)", alta: "Alta (9 ou mais anos de escolaridade)" };
+  const serieMapPdf = {
+    fund_setima: "7ª Fundamental", fund_oitava: "8ª Fundamental",
+    med_primeiro: "1º Médio", med_segundo: "2º Médio", med_terceiro: "3º Médio"
+  };
+  const tipoMapPdf = { particular: "Particular", publica: "Pública" };
+  const escLabelPdf = av.paciente.tipoEscola
+    ? `${tipoMapPdf[av.paciente.tipoEscola] || av.paciente.tipoEscola} — ${serieMapPdf[av.paciente.serie] || av.paciente.serie}`
+    : (escMap[av.paciente.esc] || av.paciente.esc);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);
   doc.setTextColor(...preto);
   doc.text(`Nome: ${av.paciente.nome}`, L + 4, Y + 13);
   doc.text(`Nascimento: ${formatarDataBR(av.paciente.nasc)}   |   Idade: ${av.paciente.idade} anos   |   Sexo: ${av.paciente.sexo === "M" ? "Masculino" : "Feminino"}`, L + 4, Y + 19);
-  doc.text(`Escolaridade: ${escMap[av.paciente.esc] || av.paciente.esc}`, L + 4, Y + 25);
+  doc.text(`Escolaridade: ${escLabelPdf}`, L + 4, Y + 25);
   Y += 34;
 
   // ── II. PROCEDIMENTO ADOTADO ────────────────────────────────────────
@@ -425,7 +457,8 @@ function exportarPDF(avParam) {
   doc.text(`Classificação Geral: ${av.classeGeral.label.toUpperCase()}`, L + 4, Y + 5);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
-  doc.text(`Escore Total Bruto: ${av.totalBruto} / ${av.maxTotal}   |   Faixa etária normativa: ${getFaixaEtaria(av.paciente.idade)} anos`, L + 4, Y + 10);
+  const faixaPdf = av.paciente.idade <= 18 ? "adolescente" : `${getFaixaEtaria(av.paciente.idade)} anos`;
+  doc.text(`Escore Total Bruto: ${av.totalBruto} / ${av.maxTotal}   |   Faixa normativa: ${faixaPdf}`, L + 4, Y + 10);
   Y += 16;
 
   const cols = [L, L+62, L+90, L+112, L+135, L+158];

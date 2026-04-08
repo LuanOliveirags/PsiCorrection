@@ -438,9 +438,29 @@
               <label>Escolaridade *</label>
               <select id="pac-esc">
                 <option value="">Selecione…</option>
-                <option value="baixa">Baixa (0–4 anos)</option>
-                <option value="media">Média (5–11 anos)</option>
-                <option value="alta">Alta (12+ anos)</option>
+                <option value="baixa">Baixa (1–4 anos)</option>
+                <option value="media">Média (5–8 anos)</option>
+                <option value="alta">Alta (9+ anos)</option>
+              </select>
+            </div>
+            <!-- Campos adicionais para adolescentes (12–18 anos) -->
+            <div class="form-group" id="grp-tipo-escola" style="display:none">
+              <label>Tipo de Escola *</label>
+              <select id="pac-tipo-escola">
+                <option value="">Selecione…</option>
+                <option value="particular">Particular</option>
+                <option value="publica">Pública</option>
+              </select>
+            </div>
+            <div class="form-group" id="grp-serie" style="display:none">
+              <label>Série *</label>
+              <select id="pac-serie">
+                <option value="">Selecione…</option>
+                <option value="fund_setima">7ª Fundamental</option>
+                <option value="fund_oitava">8ª Fundamental</option>
+                <option value="med_primeiro">1º Médio</option>
+                <option value="med_segundo">2º Médio</option>
+                <option value="med_terceiro">3º Médio</option>
               </select>
             </div>
             <div class="form-group">
@@ -467,7 +487,7 @@
           <button class="tab neup-pill" data-tab="atencao"><span class="tab-emoji">🎯</span> Atenção</button>
           <button class="tab neup-pill" data-tab="percepcao"><span class="tab-emoji">👁️</span> Percepção</button>
           <button class="tab neup-pill" data-tab="memoria"><span class="tab-emoji">🧠</span> Memória</button>
-          <button class="tab neup-pill" data-tab="habilidades"><span class="tab-emoji">🔢</span> Cálculo</button>
+          <button class="tab neup-pill" data-tab="habilidades"><span class="tab-emoji">🔢</span> Hab. Aritm.</button>
           <button class="tab neup-pill" data-tab="linguagem"><span class="tab-emoji">💬</span> Linguagem</button>
           <button class="tab neup-pill" data-tab="funcoes"><span class="tab-emoji">⚙️</span> Funções Exec.</button>
           <button class="tab neup-pill" data-tab="praxias"><span class="tab-emoji">✋</span> Praxias</button>
@@ -478,37 +498,21 @@
           <div class="neup-domain-header">
             <div class="neup-domain-icon orientacao">🧭</div>
             <div class="neup-domain-info">
-              <h4>Orientação (Têmporo-Espacial)</h4>
-              <p>Pergunte as questões e marque quantas o paciente respondeu corretamente.</p>
+              <h4>Orientação Têmporo-Espacial</h4>
+              <p>Registre os escores totais de orientação temporal e espacial.</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Dia da semana <span class="max">/1</span></label>
-              <input type="number" min="0" max="1" class="score-input" data-area="orientacao" data-sub="dia_semana" placeholder="0">
+              <label>Orientação Temporal <span class="max">/4</span></label>
+              <input type="number" min="0" max="4" class="score-input" data-area="orientacao" data-sub="ot_tempo" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Dia do mês <span class="max">/1</span></label>
-              <input type="number" min="0" max="1" class="score-input" data-area="orientacao" data-sub="dia_mes" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Mês <span class="max">/1</span></label>
-              <input type="number" min="0" max="1" class="score-input" data-area="orientacao" data-sub="mes" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Ano <span class="max">/1</span></label>
-              <input type="number" min="0" max="1" class="score-input" data-area="orientacao" data-sub="ano" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Local onde está <span class="max">/1</span></label>
-              <input type="number" min="0" max="1" class="score-input" data-area="orientacao" data-sub="local" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Cidade <span class="max">/1</span></label>
-              <input type="number" min="0" max="1" class="score-input" data-area="orientacao" data-sub="cidade" placeholder="0">
+              <label>Orientação Espacial <span class="max">/4</span></label>
+              <input type="number" min="0" max="4" class="score-input" data-area="orientacao" data-sub="ot_espaco" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">🧭 Subtotal Orientação: <strong id="sub-orientacao">0</strong> / 6</div>
+          <div class="subtotal-bar">🧭 Subtotal Orientação: <strong id="sub-orientacao">0</strong> / 8</div>
         </div>
 
         <!-- ATENÇÃO -->
@@ -517,24 +521,20 @@
             <div class="neup-domain-icon atencao">🎯</div>
             <div class="neup-domain-info">
               <h4>Atenção</h4>
-              <p>Subtestes de atenção seletiva, sustentada e alternada.</p>
+              <p>Contagem inversa e repetição de sequências de dígitos.</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Dígitos — Ordem Direta <span class="max">/12</span></label>
-              <input type="number" min="0" max="12" class="score-input" data-area="atencao" data-sub="digitos_direto" placeholder="0">
+              <label>Contagem Inversa (escore) <span class="max">/20</span></label>
+              <input type="number" min="0" max="20" class="score-input" data-area="atencao" data-sub="contagem_inversa" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Dígitos — Ordem Inversa <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="atencao" data-sub="digitos_inverso" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Cancelamento de Letras <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="atencao" data-sub="cancelamento" placeholder="0">
+              <label>Repetição de Dígitos <span class="max">/8</span></label>
+              <input type="number" min="0" max="8" class="score-input" data-area="atencao" data-sub="repeticao_digitos" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">🎯 Subtotal Atenção: <strong id="sub-atencao">0</strong> / 32</div>
+          <div class="subtotal-bar">🎯 Subtotal Atenção: <strong id="sub-atencao">0</strong> / 28</div>
         </div>
 
         <!-- PERCEPÇÃO -->
@@ -542,21 +542,29 @@
           <div class="neup-domain-header">
             <div class="neup-domain-icon percepcao">👁️</div>
             <div class="neup-domain-info">
-              <h4>Percepção Visual</h4>
-              <p>Nomeação de figuras e discriminação visual.</p>
+              <h4>Percepção</h4>
+              <p>Verificação de linhas, heminegligência e reconhecimento de faces.</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Nomeação de Figuras <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="percepcao" data-sub="nomeacao" placeholder="0">
+              <label>Verificação de Linhas <span class="max">/6</span></label>
+              <input type="number" min="0" max="6" class="score-input" data-area="percepcao" data-sub="verif_linhas" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Discriminação de Figuras <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="percepcao" data-sub="discriminacao" placeholder="0">
+              <label>Heminegligência Visual <span class="max">/1</span></label>
+              <input type="number" min="0" max="1" class="score-input" data-area="percepcao" data-sub="heminegligencia" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Percepção de Faces <span class="max">/3</span></label>
+              <input type="number" min="0" max="3" class="score-input" data-area="percepcao" data-sub="percep_faces" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Reconhecimento de Faces <span class="max">/2</span></label>
+              <input type="number" min="0" max="2" class="score-input" data-area="percepcao" data-sub="recon_faces" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">👁️ Subtotal Percepção: <strong id="sub-percepcao">0</strong> / 20</div>
+          <div class="subtotal-bar">👁️ Subtotal Percepção: <strong id="sub-percepcao">0</strong> / 12</div>
         </div>
 
         <!-- MEMÓRIA -->
@@ -565,54 +573,50 @@
             <div class="neup-domain-icon memoria">🧠</div>
             <div class="neup-domain-info">
               <h4>Memória</h4>
-              <p>Memória de trabalho, episódica verbal e semântica.</p>
+              <p>Trabalho, verbal episódica, semântica LP, visual CP e prospectiva.</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Memória de Trabalho Verbal <span class="max">/6</span></label>
-              <input type="number" min="0" max="6" class="score-input" data-area="memoria" data-sub="trabalho_verbal" placeholder="0">
+              <label>Memória de Trabalho (total) <span class="max">/38</span></label>
+              <input type="number" min="0" max="38" class="score-input" data-area="memoria" data-sub="mem_trabalho" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Evocação Imediata (5 palavras) <span class="max">/5</span></label>
-              <input type="number" min="0" max="5" class="score-input" data-area="memoria" data-sub="evocacao_imediata" placeholder="0">
+              <label>Memória Verbal Episódica (total) <span class="max">/34</span></label>
+              <input type="number" min="0" max="34" class="score-input" data-area="memoria" data-sub="mem_verbal_episodica" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Evocação Tardia (5 palavras) <span class="max">/5</span></label>
-              <input type="number" min="0" max="5" class="score-input" data-area="memoria" data-sub="evocacao_tardia" placeholder="0">
+              <label>Memória Semântica de Longo Prazo <span class="max">/5</span></label>
+              <input type="number" min="0" max="5" class="score-input" data-area="memoria" data-sub="mem_semantica_lp" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Reconhecimento <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="memoria" data-sub="reconhecimento" placeholder="0">
+              <label>Memória Visual de Curto Prazo <span class="max">/3</span></label>
+              <input type="number" min="0" max="3" class="score-input" data-area="memoria" data-sub="mem_visual_cp" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Memória Semântica <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="memoria" data-sub="semantica" placeholder="0">
+              <label>Memória Prospectiva <span class="max">/2</span></label>
+              <input type="number" min="0" max="2" class="score-input" data-area="memoria" data-sub="mem_prospectiva" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">🧠 Subtotal Memória: <strong id="sub-memoria">0</strong> / 36</div>
+          <div class="subtotal-bar">🧠 Subtotal Memória: <strong id="sub-memoria">0</strong> / 78</div>
         </div>
 
-        <!-- CÁLCULO -->
+        <!-- HABILIDADES ARITMÉTICAS -->
         <div class="tab-content hidden" id="tab-habilidades">
           <div class="neup-domain-header">
             <div class="neup-domain-icon habilidades">🔢</div>
             <div class="neup-domain-info">
-              <h4>Cálculo</h4>
-              <p>Cálculo mental e resolução de problemas escritos.</p>
+              <h4>Habilidades Aritméticas</h4>
+              <p>Escore total das habilidades aritméticas.</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Cálculo Mental <span class="max">/6</span></label>
-              <input type="number" min="0" max="6" class="score-input" data-area="habilidades" data-sub="calculo_mental" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Problemas Aritméticos <span class="max">/4</span></label>
-              <input type="number" min="0" max="4" class="score-input" data-area="habilidades" data-sub="problemas" placeholder="0">
+              <label>Habilidades Aritméticas (total) <span class="max">/8</span></label>
+              <input type="number" min="0" max="8" class="score-input" data-area="habilidades" data-sub="hab_aritmeticas" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">🔢 Subtotal Cálculo: <strong id="sub-habilidades">0</strong> / 10</div>
+          <div class="subtotal-bar">🔢 Subtotal Hab. Aritméticas: <strong id="sub-habilidades">0</strong> / 8</div>
         </div>
 
         <!-- LINGUAGEM -->
@@ -621,32 +625,20 @@
             <div class="neup-domain-icon linguagem">💬</div>
             <div class="neup-domain-info">
               <h4>Linguagem</h4>
-              <p>Fluência verbal, compreensão oral, repetição e escrita.</p>
+              <p>Linguagem oral (total) e linguagem escrita (total).</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Fluência Verbal (animais/min) <span class="max">/13</span></label>
-              <input type="number" min="0" max="13" class="score-input" data-area="linguagem" data-sub="fluencia" placeholder="0">
+              <label>Linguagem Oral (total) <span class="max">/22</span></label>
+              <input type="number" min="0" max="22" class="score-input" data-area="linguagem" data-sub="ling_oral" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Compreensão Oral <span class="max">/5</span></label>
-              <input type="number" min="0" max="5" class="score-input" data-area="linguagem" data-sub="compreensao_oral" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Repetição de Palavras <span class="max">/5</span></label>
-              <input type="number" min="0" max="5" class="score-input" data-area="linguagem" data-sub="repeticao" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Leitura <span class="max">/5</span></label>
-              <input type="number" min="0" max="5" class="score-input" data-area="linguagem" data-sub="leitura" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Escrita (ditado) <span class="max">/5</span></label>
-              <input type="number" min="0" max="5" class="score-input" data-area="linguagem" data-sub="escrita" placeholder="0">
+              <label>Linguagem Escrita (total) <span class="max">/31</span></label>
+              <input type="number" min="0" max="31" class="score-input" data-area="linguagem" data-sub="ling_escrita" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">💬 Subtotal Linguagem: <strong id="sub-linguagem">0</strong> / 33</div>
+          <div class="subtotal-bar">💬 Subtotal Linguagem: <strong id="sub-linguagem">0</strong> / 53</div>
         </div>
 
         <!-- FUNÇÕES EXECUTIVAS -->
@@ -655,28 +647,20 @@
             <div class="neup-domain-icon funcoes">⚙️</div>
             <div class="neup-domain-info">
               <h4>Funções Executivas</h4>
-              <p>Fluência fonêmica, solução de problemas e abstração verbal.</p>
+              <p>Resolução de problemas e fluência verbal.</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Fluência Fonêmica (letra F) <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="funcoes" data-sub="fluencia_fonemica" placeholder="0">
+              <label>Resolução de Problemas <span class="max">/2</span></label>
+              <input type="number" min="0" max="2" class="score-input" data-area="funcoes" data-sub="resolucao_problemas" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Controle Inibitório <span class="max">/6</span></label>
-              <input type="number" min="0" max="6" class="score-input" data-area="funcoes" data-sub="controle_inibitorico" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Resolução de Problemas <span class="max">/4</span></label>
-              <input type="number" min="0" max="4" class="score-input" data-area="funcoes" data-sub="resolucao_problemas" placeholder="0">
-            </div>
-            <div class="subteste-item">
-              <label>Abstração Verbal <span class="max">/6</span></label>
-              <input type="number" min="0" max="6" class="score-input" data-area="funcoes" data-sub="abstracao" placeholder="0">
+              <label>Fluência Verbal (total) <span class="max">/8</span></label>
+              <input type="number" min="0" max="8" class="score-input" data-area="funcoes" data-sub="fluencia_verbal" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">⚙️ Subtotal Funções Exec.: <strong id="sub-funcoes">0</strong> / 26</div>
+          <div class="subtotal-bar">⚙️ Subtotal Funções Exec.: <strong id="sub-funcoes">0</strong> / 10</div>
         </div>
 
         <!-- PRAXIAS -->
@@ -685,20 +669,24 @@
             <div class="neup-domain-icon praxias">✋</div>
             <div class="neup-domain-info">
               <h4>Praxias</h4>
-              <p>Praxia construtiva (cópia de figuras) e ideomotora.</p>
+              <p>Praxia ideomotora, construtiva e reflexiva.</p>
             </div>
           </div>
           <div class="subteste-grid">
             <div class="subteste-item">
-              <label>Praxia Construtiva <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="praxias" data-sub="construtiva" placeholder="0">
+              <label>Praxia Ideomotora <span class="max">/3</span></label>
+              <input type="number" min="0" max="3" class="score-input" data-area="praxias" data-sub="praxia_ideomotora" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Praxia Ideomotora <span class="max">/10</span></label>
-              <input type="number" min="0" max="10" class="score-input" data-area="praxias" data-sub="ideomotora" placeholder="0">
+              <label>Praxia Construtiva <span class="max">/16</span></label>
+              <input type="number" min="0" max="16" class="score-input" data-area="praxias" data-sub="praxia_construtiva" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Praxia Reflexiva <span class="max">/3</span></label>
+              <input type="number" min="0" max="3" class="score-input" data-area="praxias" data-sub="praxia_reflexiva" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">✋ Subtotal Praxias: <strong id="sub-praxias">0</strong> / 20</div>
+          <div class="subtotal-bar">✋ Subtotal Praxias: <strong id="sub-praxias">0</strong> / 22</div>
         </div>
 
       </div><!-- /neup-section-card domínios -->

@@ -263,6 +263,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.querySelectorAll(".score-input").forEach(inp =>
     inp.addEventListener("input", atualizarSubtotal));
 
+  // Mostra/oculta campos de adolescente conforme data de nascimento
+  const nascInput = document.getElementById("pac-nasc");
+  const grpEsc = document.getElementById("pac-esc")?.closest(".form-group");
+  const grpTipoEscola = document.getElementById("grp-tipo-escola");
+  const grpSerie = document.getElementById("grp-serie");
+  if (nascInput && grpTipoEscola && grpSerie) {
+    nascInput.addEventListener("change", () => {
+      const nasc = nascInput.value;
+      if (!nasc) return;
+      const idade = calcularIdade(nasc);
+      const isAdol = idade >= 12 && idade <= 18;
+      grpTipoEscola.style.display = isAdol ? "" : "none";
+      grpSerie.style.display = isAdol ? "" : "none";
+      if (grpEsc) grpEsc.style.display = isAdol ? "none" : "";
+      // Limpa seleção ao trocar
+      if (!isAdol) {
+        document.getElementById("pac-tipo-escola").value = "";
+        document.getElementById("pac-serie").value = "";
+      } else {
+        document.getElementById("pac-esc").value = "";
+      }
+    });
+  }
+
   // Abas WISC
   document.querySelectorAll(".wisc-tab").forEach(btn => {
     btn.addEventListener("click", () => {
