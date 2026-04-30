@@ -157,13 +157,22 @@ function buildResultadoHTMLInf(av, ctx) {
     const normaTag = r.normalizacaoUsada === "completa"
       ? `<span style="font-size:10px;color:var(--success);font-weight:600">● norma completa</span>`
       : `<span style="font-size:10px;color:#b45309">● norma p/ idade</span>`;
+    const zExato  = r.zExato  ?? r.z;
+    const zArred  = arredondarZNeupsilin(r.z);
+    const calcTag = (r.media != null && r.dp != null)
+      ? `<div style="font-size:10px;color:var(--text-muted);background:var(--bg-secondary,#f1f5f9);border-radius:5px;padding:3px 7px;margin-top:5px;line-height:1.6">
+           X̄ = ${r.media.toFixed(2)} &nbsp;|&nbsp; dp = ${r.dp.toFixed(2)}<br>
+           z = (${r.score} − ${r.media.toFixed(2)}) / ${r.dp.toFixed(2)} = ${(+zExato).toFixed(2)} → <strong>${zArred.toFixed(1)}</strong>
+         </div>`
+      : "";
     areasHTML += `
       <div class="resultado-area">
         <div class="area-nome">${AREA_NOMES_INF[area]}</div>
         <div class="area-score">${r.score}<span class="area-max">/${r.max}</span></div>
-        <div style="font-size:11px;color:var(--text-muted);margin:2px 0">z = ${r.z.toFixed(2)} &nbsp;|&nbsp; ${pct}%</div>
+        <div style="font-size:11px;color:var(--text-muted);margin:2px 0">z = ${zArred.toFixed(1)} &nbsp;|&nbsp; ${pct}%</div>
         <div class="area-class"><span class="badge ${r.classe.badge}">${r.classe.label}</span></div>
         <div style="margin-top:4px">${normaTag}</div>
+        ${calcTag}
       </div>`;
   }
 
@@ -234,7 +243,7 @@ function renderizarGraficosInf(av, ctx) {
         datasets: [
           {
             label: "Paciente (z)",
-            data: areas.map(a => +av.resultados[a].z.toFixed(2)),
+            data: areas.map(a => arredondarZNeupsilin(av.resultados[a].z)),
             backgroundColor: "rgba(16,185,129,0.12)",
             borderColor: "rgba(16,185,129,0.9)",
             borderWidth: 2.5,
@@ -499,7 +508,7 @@ function exportarPDFInf(avParam) {
     doc.text(AREA_NOMES_INF[area], cols[0] + 2, Y + 5);
     doc.text(`${r.score} / ${r.max}`, cols[1] + 2, Y + 5);
     doc.text(`${pct}%`, cols[2] + 2, Y + 5);
-    doc.text(r.z.toFixed(2), cols[3] + 2, Y + 5);
+    doc.text(arredondarZNeupsilin(r.z).toFixed(1), cols[3] + 2, Y + 5);
     doc.text(r.media.toFixed(1), cols[4] + 2, Y + 5);
 
     doc.setFillColor(...corLinha.bg);

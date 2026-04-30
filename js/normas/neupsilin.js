@@ -92,6 +92,21 @@ function resolverChaveNorma(idade, escolaridade, tipoEscola, serie) {
 }
 
 /**
+ * Arredondamento NEUPSILIN (Manual, p.84):
+ * segunda casa decimal 1–5 → arredonda para baixo; 6–9 → para cima.
+ * Resultado sempre com 1 casa decimal.
+ */
+function arredondarZNeupsilin(z) {
+  if (!isFinite(z)) return z;
+  const sinal = z < 0 ? -1 : 1;
+  const abs = Math.abs(z);
+  const centesimo = Math.floor(abs * 100) % 10;
+  const truncado  = Math.floor(abs * 10) / 10;
+  const resultado = centesimo >= 6 ? truncado + 0.1 : truncado;
+  return +(sinal * resultado).toFixed(1);
+}
+
+/**
  * Classifica escore-Z em categoria qualitativa.
  * Critérios baseados em percentis (1 dp = ~16th, 1,5 dp = ~7th etc.)
  */
@@ -117,7 +132,7 @@ function calcularZArea(area, score, escolaridade, idade, tipoEscola, serie) {
   }
   const z = (score - norma.media) / norma.dp;
   const normalizacaoUsada = "manual";
-  return { z: +z.toFixed(2), classe: classificarZ(z), media: norma.media, dp: norma.dp, normalizacaoUsada };
+  return { z: arredondarZNeupsilin(z), zExato: +z.toFixed(4), classe: classificarZ(z), media: norma.media, dp: norma.dp, normalizacaoUsada };
 }
 
 /**

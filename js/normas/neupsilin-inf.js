@@ -155,6 +155,6 @@ function calcularZAreaInf(area, score, idadeAnos, tipoEscola = "", regiao = "") 
   }
 
   const z = (score - norma.media) / norma.dp;
-  return { z: +z.toFixed(2), media: norma.media, dp: norma.dp, classe: classificarZ(z), normalizacaoUsada };
+  return { z: arredondarZNeupsilin(z), zExato: +z.toFixed(4), media: norma.media, dp: norma.dp, classe: classificarZ(z), normalizacaoUsada };
 }
 
