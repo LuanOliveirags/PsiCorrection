@@ -24,7 +24,7 @@ const MAX_SCORES = {
   orientacao:  8,   // tempo(4) + espaço(4)
   atencao:    28,   // contagem inversa escore(20) + repetição dígitos(8)
   percepcao:  12,   // linhas(6) + heminegligência(1) + percepção faces(3) + reconhec. faces(2)
-  memoria:    78,   // trabalho + verbal episódica + semântica LP + visual CP + prospectiva
+  memoria:    84,   // trabalho(38: ordenamento_10 + span_28) + episódica(36: imediata_9 + tardia_9 + reconhec_18) + semânticaLP(5) + visualCP(3) + prospectiva(2)
   habilidades: 8,   // habilidades aritméticas total
   linguagem:  53,   // oral(22) + escrita(31)
   funcoes:    10,   // resolução problemas(2) + fluência verbal total(8) — total sintético
@@ -53,14 +53,25 @@ const SUB_NOMES = {
   heminegligencia:         "Heminegligência Visual",
   percep_faces:            "Percepção de Faces",
   recon_faces:             "Reconhecimento de Faces",
-  mem_trabalho:            "Memória de Trabalho",
-  mem_verbal_episodica:    "Memória Verbal Episódica",
+  ordenamento_digitos:     "Ordenamento Ascendente de Dígitos",
+  span_auditivo:           "Span Auditivo de Palavras em Sentenças",
+  evoc_imediata:           "Evocação Imediata",
+  evoc_tardia:             "Evocação Tardia",
+  reconhecimento:          "Reconhecimento",
   mem_semantica_lp:        "Memória Semântica de Longo Prazo",
   mem_visual_cp:           "Memória Visual de Curto Prazo",
   mem_prospectiva:         "Memória Prospectiva",
   hab_aritmeticas:         "Habilidades Aritméticas",
-  ling_oral:               "Linguagem Oral",
-  ling_escrita:            "Linguagem Escrita",
+  nomeacao:                "Nomeação",
+  repeticao:               "Repetição",
+  ling_automatica:         "Linguagem Automática",
+  compreensao_oral:        "Compreensão Oral",
+  proc_inferencias:        "Processamento de Inferências",
+  leitura:                 "Leitura em Voz Alta",
+  compreensao_escrita:     "Compreensão de Leitura",
+  escrita_espontanea:      "Escrita Espontânea",
+  escrita_copiada:         "Escrita Copiada",
+  escrita_ditada:          "Escrita Ditada",
   resolucao_problemas:     "Resolução de Problemas",
   fluencia_verbal:         "Fluência Verbal",
   praxia_ideomotora:       "Praxia Ideomotora",
@@ -133,6 +144,27 @@ function calcularZArea(area, score, escolaridade, idade, tipoEscola, serie) {
   const z = (score - norma.media) / norma.dp;
   const normalizacaoUsada = "manual";
   return { z: arredondarZNeupsilin(z), zExato: +z.toFixed(4), classe: classificarZ(z), media: norma.media, dp: norma.dp, normalizacaoUsada };
+}
+
+/**
+ * Calcula z-score do TEMPO da Contagem Inversa.
+ * Direção invertida: tempo maior = desempenho pior → z negativo.
+ * Norma: chave "contagem_tempo" no Firestore (Tabela 14, Manual NEUPSILIN).
+ */
+function calcularZTempo(tempo, escolaridade, idade, tipoEscola, serie) {
+  if (!tempo || tempo <= 0) return null;
+  const chave = resolverChaveNorma(idade, escolaridade, tipoEscola, serie);
+  const tabelas = getServidorNormas()?.neupsilin ?? NEUPSILIN_NORMAS;
+  const norma = tabelas["contagem_tempo"]?.[chave.escolaridade]?.[chave.faixa];
+  if (!norma || norma.dp === 0) return null;
+  const z = (norma.media - tempo) / norma.dp; // invertido
+  return {
+    z: arredondarZNeupsilin(z),
+    zExato: +z.toFixed(4),
+    classe: classificarZ(z),
+    media: norma.media,
+    dp: norma.dp
+  };
 }
 
 /**

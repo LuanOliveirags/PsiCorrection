@@ -81,6 +81,11 @@ async function calcularEsalvar() {
   const totalBruto  = Object.values(escores).reduce((a, v) => a + v.total, 0);
   const maxTotal    = Object.values(MAX_SCORES).reduce((a, b) => a + b, 0);
 
+  const tempoVal = parseInt(document.getElementById("contagem-tempo")?.value) || null;
+  const tempoContagem = tempoVal
+    ? { tempo: tempoVal, ...calcularZTempo(tempoVal, esc, idade, tipoEscola, serie) }
+    : null;
+
   const avaliacao = {
     id: Date.now(),
     tipoTeste: "NEUPSILIN-ADULTO",
@@ -89,6 +94,7 @@ async function calcularEsalvar() {
     paciente: { nome, nasc, esc: isAdol ? `${tipoEscola}_${serie}` : esc, sexo, idade, tipoEscola, serie },
     escores,
     resultados,
+    tempoContagem,
     totalBruto,
     maxTotal,
     classeGeral,
@@ -152,6 +158,20 @@ function buildResultadoHTML(av, ctx) {
            z = (${r.score} − ${r.media.toFixed(2)}) / ${r.dp.toFixed(2)} = ${(+zExato).toFixed(2)} → <strong>${zArred.toFixed(1)}</strong>
          </div>`
       : "";
+    let tempoTag = "";
+    if (area === "atencao" && av.tempoContagem) {
+      const tc = av.tempoContagem;
+      const tzArred = arredondarZNeupsilin(tc.z);
+      tempoTag = tc.media != null
+        ? `<div style="font-size:10px;border-top:1px dashed var(--border,#e2e8f0);margin-top:6px;padding-top:6px">
+             <span style="color:var(--text-muted);font-weight:600">⏱ Tempo: ${tc.tempo}s</span><br>
+             <span style="color:var(--text-muted)">X̄ = ${tc.media.toFixed(1)}s &nbsp;|&nbsp; dp = ${tc.dp.toFixed(2)}</span><br>
+             <span style="color:var(--text-muted)">z = (${tc.media.toFixed(1)} − ${tc.tempo}) / ${tc.dp.toFixed(2)} = ${tc.zExato.toFixed(2)} → <strong>${tzArred.toFixed(1)}</strong></span><br>
+             <span class="badge ${tc.classe.badge}" style="margin-top:3px;display:inline-block">${tc.classe.label}</span>
+           </div>`
+        : `<div style="font-size:10px;color:#b45309;margin-top:6px">⏱ Tempo ${tc.tempo}s registrado — norma indisponível no servidor.</div>`;
+    }
+
     areasHTML += `
       <div class="resultado-area">
         <div class="area-nome">${AREA_NOMES[area]}</div>
@@ -160,6 +180,7 @@ function buildResultadoHTML(av, ctx) {
         <div class="area-class"><span class="badge ${r.classe.badge}">${r.classe.label}</span></div>
         <div style="margin-top:4px">${normaTag}</div>
         ${calcTag}
+        ${tempoTag}
       </div>`;
   }
 
@@ -517,6 +538,36 @@ function exportarPDF(avParam) {
     doc.setDrawColor(226, 232, 240);
     doc.line(L, Y + rowH, R, Y + rowH);
     Y += rowH;
+
+    if (area === "atencao" && av.tempoContagem) {
+      const tc = av.tempoContagem;
+      doc.setFillColor(248, 250, 252);
+      doc.rect(L, Y, W, rowH, "F");
+      doc.setTextColor(...cinza);
+      doc.setFontSize(7.5);
+      doc.text("  ↳ Contagem Inversa — Tempo", cols[0] + 2, Y + 5);
+      doc.text(`${tc.tempo}s`, cols[1] + 2, Y + 5);
+      doc.text("—", cols[2] + 2, Y + 5);
+      if (tc.z != null) {
+        doc.text(arredondarZNeupsilin(tc.z).toFixed(1), cols[3] + 2, Y + 5);
+        doc.text(`${tc.media.toFixed(1)}s ±${tc.dp.toFixed(2)}`, cols[4] + 2, Y + 5);
+        const corTc = badgeParaCor(tc.classe.badge);
+        doc.setFillColor(...corTc.bg);
+        doc.roundedRect(cols[5] + 2, Y + 1, 30, 5.5, 2, 2, "F");
+        doc.setTextColor(...corTc.txt);
+        doc.setFont("helvetica", "bold");
+        doc.text(tc.classe.label, cols[5] + 17, Y + 5, { align: "center" });
+        doc.setFont("helvetica", "normal");
+      } else {
+        doc.text("—", cols[3] + 2, Y + 5);
+        doc.text("norma indispon.", cols[4] + 2, Y + 5);
+      }
+      doc.setTextColor(...preto);
+      doc.setFontSize(8);
+      doc.setDrawColor(226, 232, 240);
+      doc.line(L, Y + rowH, R, Y + rowH);
+      Y += rowH;
+    }
   });
 
   Y += 10;

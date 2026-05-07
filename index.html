@@ -578,14 +578,40 @@
             </div>
           </div>
           <div class="subteste-grid">
+            <!-- 4.1 Memória de Trabalho -->
+            <div class="subteste-group-label" style="grid-column:1 / -1">4.1 Memória de Trabalho <span class="max">/38</span></div>
             <div class="subteste-item">
-              <label>Memória de Trabalho (total) <span class="max">/38</span></label>
-              <input type="number" min="0" max="38" class="score-input" data-area="memoria" data-sub="mem_trabalho" placeholder="0">
+              <label>Ordenamento ascendente de dígitos <span class="max">/10</span></label>
+              <input type="number" min="0" max="10" class="score-input" data-area="memoria" data-sub="ordenamento_digitos" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Memória Verbal Episódica (total) <span class="max">/34</span></label>
-              <input type="number" min="0" max="34" class="score-input" data-area="memoria" data-sub="mem_verbal_episodica" placeholder="0">
+              <label>Maior sequência — Ordenamento <span class="hint">(qualitativo)</span></label>
+              <input type="number" min="0" max="10" id="maior-seq-ordenamento" placeholder="—">
             </div>
+            <div class="subteste-item">
+              <label>Span auditivo de palavras em sentenças <span class="max">/28</span></label>
+              <input type="number" min="0" max="28" class="score-input" data-area="memoria" data-sub="span_auditivo" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Maior sequência — Span <span class="hint">(qualitativo)</span></label>
+              <input type="number" min="0" max="28" id="maior-seq-span" placeholder="—">
+            </div>
+            <!-- 4.2 Memória Verbal Episódica -->
+            <div class="subteste-group-label" style="grid-column:1 / -1">4.2 Memória Verbal Episódica <span class="max">/36</span></div>
+            <div class="subteste-item">
+              <label>Evocação imediata <span class="max">/9</span></label>
+              <input type="number" min="0" max="9" class="score-input" data-area="memoria" data-sub="evoc_imediata" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Evocação tardia <span class="max">/9</span></label>
+              <input type="number" min="0" max="9" class="score-input" data-area="memoria" data-sub="evoc_tardia" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Reconhecimento <span class="max">/18</span></label>
+              <input type="number" min="0" max="18" class="score-input" data-area="memoria" data-sub="reconhecimento" placeholder="0">
+            </div>
+            <!-- 4.3–4.5 outros subtestes -->
+            <div class="subteste-group-label" style="grid-column:1 / -1">4.3–4.5 Demais subtestes de Memória</div>
             <div class="subteste-item">
               <label>Memória Semântica de Longo Prazo <span class="max">/5</span></label>
               <input type="number" min="0" max="5" class="score-input" data-area="memoria" data-sub="mem_semantica_lp" placeholder="0">
@@ -599,7 +625,7 @@
               <input type="number" min="0" max="2" class="score-input" data-area="memoria" data-sub="mem_prospectiva" placeholder="0">
             </div>
           </div>
-          <div class="subtotal-bar">🧠 Subtotal Memória: <strong id="sub-memoria">0</strong> / 78</div>
+          <div class="subtotal-bar">🧠 Subtotal Memória: <strong id="sub-memoria">0</strong> / 84</div>
         </div>
 
         <!-- HABILIDADES ARITMÉTICAS -->
@@ -626,17 +652,53 @@
             <div class="neup-domain-icon linguagem">💬</div>
             <div class="neup-domain-info">
               <h4>Linguagem</h4>
-              <p>Linguagem oral (total) e linguagem escrita (total).</p>
+              <p>Linguagem oral: nomeação, repetição, automática, compreensão e inferências. Escrita: leitura, compreensão, espontânea, copiada e ditada.</p>
             </div>
           </div>
           <div class="subteste-grid">
+            <!-- 6.1 Linguagem Oral -->
+            <div class="subteste-group-label" style="grid-column:1 / -1">6.1 Linguagem Oral <span class="max">/22</span></div>
             <div class="subteste-item">
-              <label>Linguagem Oral (total) <span class="max">/22</span></label>
-              <input type="number" min="0" max="22" class="score-input" data-area="linguagem" data-sub="ling_oral" placeholder="0">
+              <label>Nomeação <span class="max">/4</span></label>
+              <input type="number" min="0" max="4" class="score-input" data-area="linguagem" data-sub="nomeacao" placeholder="0">
             </div>
             <div class="subteste-item">
-              <label>Linguagem Escrita (total) <span class="max">/31</span></label>
-              <input type="number" min="0" max="31" class="score-input" data-area="linguagem" data-sub="ling_escrita" placeholder="0">
+              <label>Repetição <span class="max">/10</span></label>
+              <input type="number" min="0" max="10" class="score-input" data-area="linguagem" data-sub="repeticao" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Linguagem Automática <span class="max">/2</span></label>
+              <input type="number" min="0" max="2" class="score-input" data-area="linguagem" data-sub="ling_automatica" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Compreensão Oral <span class="max">/3</span></label>
+              <input type="number" min="0" max="3" class="score-input" data-area="linguagem" data-sub="compreensao_oral" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Processamento de Inferências <span class="max">/3</span></label>
+              <input type="number" min="0" max="3" class="score-input" data-area="linguagem" data-sub="proc_inferencias" placeholder="0">
+            </div>
+            <!-- 6.2 Linguagem Escrita -->
+            <div class="subteste-group-label" style="grid-column:1 / -1">6.2 Linguagem Escrita <span class="max">/31</span></div>
+            <div class="subteste-item">
+              <label>Leitura em voz alta <span class="max">/12</span></label>
+              <input type="number" min="0" max="12" class="score-input" data-area="linguagem" data-sub="leitura" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Compreensão de leitura <span class="max">/3</span></label>
+              <input type="number" min="0" max="3" class="score-input" data-area="linguagem" data-sub="compreensao_escrita" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Escrita espontânea <span class="max">/2</span></label>
+              <input type="number" min="0" max="2" class="score-input" data-area="linguagem" data-sub="escrita_espontanea" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Escrita copiada <span class="max">/2</span></label>
+              <input type="number" min="0" max="2" class="score-input" data-area="linguagem" data-sub="escrita_copiada" placeholder="0">
+            </div>
+            <div class="subteste-item">
+              <label>Escrita ditada <span class="max">/12</span></label>
+              <input type="number" min="0" max="12" class="score-input" data-area="linguagem" data-sub="escrita_ditada" placeholder="0">
             </div>
           </div>
           <div class="subtotal-bar">💬 Subtotal Linguagem: <strong id="sub-linguagem">0</strong> / 53</div>

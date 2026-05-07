@@ -820,6 +820,31 @@
   background: #fff;
 }
 
+/* Sub-group labels inside subteste-grid (e.g. "4.1 Memória de Trabalho") */
+#sec-nova-avaliacao .tab-content .subteste-group-label {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #2563eb;
+  padding: 6px 4px 2px;
+  border-bottom: 1.5px solid #bfdbfe;
+  margin-bottom: 4px;
+}
+#sec-nova-avaliacao .tab-content .subteste-group-label .max {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 11px;
+  margin-left: 4px;
+}
+#sec-nova-avaliacao .tab-content .subteste-item .hint {
+  font-size: 10px;
+  font-weight: 400;
+  color: #94a3b8;
+  margin-left: 4px;
+}
+
 /* Subtotal per-domain colors Adulto */
 #sec-nova-avaliacao .tab-content .subtotal-bar {
   background: linear-gradient(to right, #eff6ff, #dbeafe);
